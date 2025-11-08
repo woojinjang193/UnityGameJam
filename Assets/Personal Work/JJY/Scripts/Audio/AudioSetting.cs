@@ -43,7 +43,7 @@ public class AudioSetting : MonoBehaviour
     {
         float linearVolume = SliderValueToLinearVolume(value);
         PlayerPrefs.SetFloat(PREF_MASTER, value);
-        AudioManager.Instance?.SetMasterVolume(linearVolume);
+        Manager.Audio.SetMasterVolume(linearVolume);
         UpdateTexts();
     }
 
@@ -51,7 +51,7 @@ public class AudioSetting : MonoBehaviour
     {
         float linearVolume = SliderValueToLinearVolume(value);
         PlayerPrefs.SetFloat(PREF_BGM, value);
-        AudioManager.Instance?.SetBGMVolume(linearVolume);
+        Manager.Audio.SetBGMVolume(linearVolume);
         UpdateTexts();
     }
 
@@ -59,7 +59,7 @@ public class AudioSetting : MonoBehaviour
     {
         float linearVolume = SliderValueToLinearVolume(value);
         PlayerPrefs.SetFloat(PREF_SFX, value);
-        AudioManager.Instance?.SetSFXVolume(linearVolume);
+        Manager.Audio.SetSFXVolume(linearVolume);
         UpdateTexts();
     }
 
