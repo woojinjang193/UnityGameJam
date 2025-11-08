@@ -14,13 +14,18 @@ public class CheckGround : MonoBehaviour
 
     private bool isFalling = false;
     private SpriteRenderer sr;
-    private TopDownCharacterController moveController; // 실제 이동 스크립트 넣어줄 예정
+    private PlayerController moveController; // 실제 이동 스크립트 넣어줄 예정
+    private EchoController echoController;
     [SerializeField] private Vector3 respawnPos;
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         // 여기 본인 이동 스크립트 타입으로 바꿔
-        moveController = GetComponent<TopDownCharacterController>();
+        moveController = GetComponent<PlayerController>();
+        if (moveController == null)
+        {
+            echoController = GetComponent<EchoController>();
+        }
     }
 
     private void SetRespawnPos(Vector3 pos)
@@ -59,6 +64,7 @@ public class CheckGround : MonoBehaviour
     {
         isFalling = true;
         if (moveController != null) moveController.enabled = false; // 입력/이동 막기
+        if (echoController != null) echoController.enabled = false; // 입력/이동 막기
 
         Vector3 startPos = transform.position;
         Vector3 startScale = transform.localScale;
@@ -91,12 +97,14 @@ public class CheckGround : MonoBehaviour
         // 여기서 죽음/리스폰 처리
         // 예: GameManager.Instance.RespawnPlayer();
         // 또는 시작 위치로 이동 후 초기화
+        if(moveController != null) moveController.DiePlayer();
 
         // 데모용: 원상복구 + 시작 지점 텔레포트
-        transform.position = respawnPos; // TODO: 리스폰 위치로 교체
-        transform.localScale = new Vector3(1, 1, 1);
-        if (sr != null) sr.color = startColor;
+        //transform.position = respawnPos; // TODO: 리스폰 위치로 교체
+        //transform.localScale = new Vector3(1, 1, 1);
+        //if (sr != null) sr.color = startColor;
         if (moveController != null) moveController.enabled = true;
+        if (echoController != null) echoController.enabled = true;
 
         isFalling = false;
     }
