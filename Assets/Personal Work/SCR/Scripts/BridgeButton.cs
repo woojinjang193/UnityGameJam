@@ -7,6 +7,7 @@ public class BridgeButton : Gimmic
     [SerializeField] GameObject OffButtonObj;
     [SerializeField] GameObject CreateBridgeObj;
     [SerializeField] GameObject DeleteBridgeObj;
+    private int playerNum = 0;
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class BridgeButton : Gimmic
 
     public void SetButton()
     {
+        isOn = playerNum > 0;
         OnButtonObj.SetActive(isOn);
         CreateBridgeObj.SetActive(isOn);
         OffButtonObj.SetActive(!isOn);
@@ -33,7 +35,7 @@ public class BridgeButton : Gimmic
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            isOn = true;
+            playerNum++;
             SetButton();
         }
     }
@@ -42,7 +44,7 @@ public class BridgeButton : Gimmic
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            isOn = false;
+            playerNum--;
             SetButton();
         }
     }

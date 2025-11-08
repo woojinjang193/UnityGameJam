@@ -7,12 +7,13 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class GameManager : Singleton<GameManager>
 {
-    public int CurStage {  get; private set; }
+    public int CurStage { get; private set; }
 
     private float _spawnDelayTime = 2;
 
     private GameObject _echo;
     private GameObject _player;
+    public Transform PlayerTransform;
     private Vector2 _spawnPoint = Vector2.zero;
 
     private List<EchoController> _echos = new List<EchoController>();
@@ -104,6 +105,7 @@ public class GameManager : Singleton<GameManager>
     public void SpawnPlayer()
     {
         var player = Instantiate(_player, _spawnPoint, Quaternion.identity);
+        PlayerTransform = player.transform;
         _playerCon = player.GetComponent<PlayerController>();
     }
 
