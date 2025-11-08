@@ -10,7 +10,7 @@ public struct InputRecord
     public Vector2 Input;
     public Vector2 Position;
 }
-public class PlayerController : MonoBehaviour, IInteractor
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _speed = 7;
 
@@ -28,19 +28,16 @@ public class PlayerController : MonoBehaviour, IInteractor
     private SpriteRenderer _spriteRenderer;
 
     private bool _isKeyPressed;
-    private Vector2 _prevPos;
-    public Vector2 MoveDelta { get; private set; }
 
-    public int Id => 0;
-    public bool IsKeyPressed => _isKeyPressed;
+    private bool _canMoveBox = false;
+    private GameObject _box;
+    private Rigidbody2D _boxRb;
 
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _startColor = _spriteRenderer.color;
-
-        _prevPos = _rigid.position;
     }
     private void OnEnable()
     {
@@ -94,8 +91,10 @@ public class PlayerController : MonoBehaviour, IInteractor
         Vector2 nextVec = _inputVec * _speed * Time.fixedDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);
 
-        MoveDelta = _rigid.position - _prevPos;
-        _prevPos = _rigid.position;
+        if (_boxRb != null && _canMoveBox && _isKeyPressed)
+        {
+            _boxRb.MovePosition(_boxRb.position + nextVec);
+        }
     }
 
     public void DiePlayer()
@@ -120,6 +119,9 @@ public class PlayerController : MonoBehaviour, IInteractor
     {
         if (collision.gameObject.CompareTag("Box"))
         {
+            _canMoveBox = true;
+            _box = collision.gameObject;
+            _boxRb = collision.rigidbody;
             _speed = 3.5f;
         }
     }
@@ -128,6 +130,9 @@ public class PlayerController : MonoBehaviour, IInteractor
     {
         if (other.gameObject.CompareTag("Box"))
         {
+            _canMoveBox = false;
+            _box = null;
+            _boxRb = null;
             _speed = 7f;
         }
     }

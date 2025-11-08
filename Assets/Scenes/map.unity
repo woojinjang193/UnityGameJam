@@ -76609,6 +76609,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2100062302}
     m_Modifications:
+    - target: {fileID: 8150476868300563361, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
+      propertyPath: m_Mass
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 8150476868300563372, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
       propertyPath: m_Name
       value: Box
@@ -76672,8 +76676,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8150476868300563372, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1959716952}
   m_SourcePrefab: {fileID: 100100000, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
+--- !u!1 &1959716951 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8150476868300563372, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
+  m_PrefabInstance: {fileID: 1959716950}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1959716952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959716951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16bdefb6c4799dd4aa8699cf1231f04d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BoxInteraction
+  _playerOnly: 1
+  _ownerId: 0
 --- !u!1 &1975081737
 GameObject:
   m_ObjectHideFlags: 0

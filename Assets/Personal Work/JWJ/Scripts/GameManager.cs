@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
 
     private GameObject _echo;
     private GameObject _player;
+    private GameObject _box;
     public Transform PlayerTransform;
     private Vector2 _spawnPoint = Vector2.zero;
 
@@ -28,6 +29,8 @@ public class GameManager : Singleton<GameManager>
         handle.Completed += OnEchoLoaded;
         var handle_player = Addressables.LoadAssetAsync<GameObject>("Player");
         handle_player.Completed += OnPlayerLoaded;
+        var handle_box = Addressables.LoadAssetAsync<GameObject>("Box");
+        handle_box.Completed += OnBoxLoaded;
         CurStage = 0;
     }
 
@@ -54,6 +57,18 @@ public class GameManager : Singleton<GameManager>
         else
         {
             Debug.LogError($"Player 로드 실패: {handle.OperationException}");
+        }
+    }
+    private void OnBoxLoaded(AsyncOperationHandle<GameObject> handle)
+    {
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            _box = handle.Result;
+            Debug.Log($"Box 로드 완료");
+        }
+        else
+        {
+            Debug.LogError($"Box 로드 실패: {handle.OperationException}");
         }
     }
 

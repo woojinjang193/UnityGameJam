@@ -236,6 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9eafab38243f244c93e76bebde3641c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EchoController
+  _echoID: 0
   _speed: 7
 --- !u!1 &4247971138333310393
 GameObject:

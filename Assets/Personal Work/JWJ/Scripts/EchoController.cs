@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EchoController : MonoBehaviour, IInteractor
+public class EchoController : MonoBehaviour
 {
     [SerializeField] private int _echoID;
     [SerializeField] private float _speed = 7f;
@@ -19,10 +19,6 @@ public class EchoController : MonoBehaviour, IInteractor
     private SpriteRenderer _sr;
 
     private bool _isKeyPressed;
-    private Vector2 _prevPos;
-    public Vector2 MoveDelta { get; private set; }
-    public int Id => _echoID;
-    public bool IsKeyPressed => _isKeyPressed;
 
     private void Awake()
     {
@@ -49,7 +45,6 @@ public class EchoController : MonoBehaviour, IInteractor
     {
         _startTime = Time.fixedTime;
         _isPlaying = true;
-        _prevPos = _rigid.position;
     }
     private void OnPlayerDied()
     {
@@ -67,7 +62,6 @@ public class EchoController : MonoBehaviour, IInteractor
         _isPlaying = false;
         _isKeyPressed = false;
         _startTime = recordStartTime;
-        _prevPos = transform.position;
     }
     public void ResetToSpawn(Vector2 spawnPoint)
     {
@@ -77,8 +71,6 @@ public class EchoController : MonoBehaviour, IInteractor
         _curInput = Vector2.zero;
         _isPlaying = false;
         _isKeyPressed = false;
-        _prevPos = spawnPoint;
-        MoveDelta = Vector2.zero;
     }
 
     private void FixedUpdate()
@@ -91,9 +83,6 @@ public class EchoController : MonoBehaviour, IInteractor
         if (_curInputIndex >= _records.Count)
         {
             _rigid.linearVelocity = Vector2.zero;
-
-            MoveDelta = _rigid.position - _prevPos;
-            _prevPos = _rigid.position;
             return;
         }
 
