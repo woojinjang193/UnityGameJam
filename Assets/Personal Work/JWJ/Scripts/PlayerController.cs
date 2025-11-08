@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
         else if (_inputVec.y == 1) animator.SetInteger("Direction", 1);
         else if (_inputVec.y == -1) animator.SetInteger("Direction", 0);
 
+
         animator.SetBool("IsMoving", _inputVec.magnitude > 0);
     }
     private void FixedUpdate()
