@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigid;
     private int _dieCount = 0;
     private Vector2 _lastRecordedInput = Vector2.positiveInfinity;
-
+    private Animator animator;
     private List<InputRecord> _records = new();
 
     private bool _isRecording = false;
@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
         _rigid = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _startColor = _spriteRenderer.color;
+        animator = GetComponent<Animator>();
     }
     private void OnEnable()
     {
@@ -69,7 +70,15 @@ public class PlayerController : MonoBehaviour
             _lastRecordedInput = _inputVec;
 
             Manager.Game.StartPlayer();
+
         }
+        if (_inputVec.x == -1) animator.SetInteger("Direction", 3);
+        else if (_inputVec.x == 1) animator.SetInteger("Direction", 2);
+        else if (_inputVec.y == 1) animator.SetInteger("Direction", 1);
+        else if (_inputVec.y == -1) animator.SetInteger("Direction", 0);
+
+
+        animator.SetBool("IsMoving", _inputVec.magnitude > 0);
     }
     public void OnInteract(InputValue value)
     {
