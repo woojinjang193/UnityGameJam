@@ -5,6 +5,7 @@ public class PGButton : Gimmic
 {
     [SerializeField] GameObject OnButtonObj;
     [SerializeField] GameObject OffButtonObj;
+    private int playerNum = 0;
 
     void Start()
     {
@@ -14,6 +15,7 @@ public class PGButton : Gimmic
 
     public void SetButton()
     {
+        isOn = playerNum > 0;
         OnButtonObj.SetActive(isOn);
         OffButtonObj.SetActive(!isOn);
         OnGimmic?.Invoke(isOn);
@@ -29,7 +31,7 @@ public class PGButton : Gimmic
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            isOn = true;
+            playerNum++;
             SetButton();
         }
     }
@@ -38,7 +40,7 @@ public class PGButton : Gimmic
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            isOn = false;
+            playerNum--;
             SetButton();
         }
     }

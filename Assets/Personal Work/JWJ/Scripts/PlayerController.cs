@@ -30,7 +30,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
-        _startColor = GetComponent<SpriteRenderer>().color;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _startColor = _spriteRenderer.color;
     }
     private void OnEnable()
     {
@@ -66,7 +67,7 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(_isRecording && _inputVec != _lastRecordedInput)
+        if (_isRecording && _inputVec != _lastRecordedInput)
         {
             _records.Add(new InputRecord
             {
@@ -80,7 +81,7 @@ public class PlayerController : MonoBehaviour
         Vector2 nextVec = _inputVec * _speed * Time.fixedDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);
     }
-    
+
     public void DiePlayer()
     {
         if (_isRecording)

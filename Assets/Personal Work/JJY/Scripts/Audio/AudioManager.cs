@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioManager : Singleton<AudioManager>
+public class AudioManager : MonoBehaviour
 {
-
+    public static AudioManager Instance { get; private set; }
     [Header("Mixer")]
     public AudioMixer mixer;
 
@@ -15,7 +15,7 @@ public class AudioManager : Singleton<AudioManager>
     public AudioMixerGroup sfxGroup;
 
     [Header("AudioSources")]
-    public AudioSource bgmSourcePrefab;
+    public AudioSource titleBGM;
     public int sfxPoolSize = 10;
 
     private const string MASTER_PARAM = "MasterVolume";
@@ -29,9 +29,15 @@ public class AudioManager : Singleton<AudioManager>
     private AudioSource bgmSource;
     private List<AudioSource> sfxPool = new List<AudioSource>();
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
         EnsureBgmSource();
         CreateSfxPool();
@@ -53,9 +59,9 @@ public class AudioManager : Singleton<AudioManager>
     {
         if (bgmSource == null)
         {
-            if (bgmSourcePrefab != null)
+            if (titleBGM != null)
             {
-                bgmSource = Instantiate(bgmSourcePrefab, transform);
+                bgmSource = Instantiate(titleBGM, transform);
             }
             else
             {
