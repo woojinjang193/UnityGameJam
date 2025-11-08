@@ -9,6 +9,7 @@ public struct InputRecord
     public float Time;
     public Vector2 Input;
     public Vector2 Position;
+    public bool Interact;
 }
 public class PlayerController : MonoBehaviour
 {
@@ -26,6 +27,12 @@ public class PlayerController : MonoBehaviour
     private float _recordStartTime;
     private Color _startColor;
     private SpriteRenderer _spriteRenderer;
+
+    private bool _isKeyPressed;
+
+    private bool _canMoveBox = false;
+    private GameObject _box;
+    private Rigidbody2D _boxRb;
 
     private void Awake()
     {
@@ -59,7 +66,8 @@ public class PlayerController : MonoBehaviour
             {
                 Time = 0f,
                 Input = _inputVec,
-                Position = _rigid.position
+                Position = _rigid.position,
+                Interact = _isKeyPressed
             });
             _lastRecordedInput = _inputVec;
 
@@ -74,6 +82,21 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool("IsMoving", _inputVec.magnitude > 0);
     }
+    public void OnInteract(InputValue value)
+    {
+        _isKeyPressed = value.isPressed;
+
+        if (_isRecording)
+        {
+            _records.Add(new InputRecord
+            {
+                Time = Time.fixedTime - _recordStartTime,
+                Input = _inputVec,
+                Position = _rigid.position,
+                Interact = _isKeyPressed
+            });
+        }
+    }
     private void FixedUpdate()
     {
         if (_isRecording && _inputVec != _lastRecordedInput)
@@ -82,13 +105,19 @@ public class PlayerController : MonoBehaviour
             {
                 Time = Time.fixedTime - _recordStartTime,
                 Input = _inputVec,
-                Position = _rigid.position
+                Position = _rigid.position,
+                Interact = _isKeyPressed
             });
             _lastRecordedInput = _inputVec;
             //Debug.Log($"[Player] 입력 기록: Time={Time.fixedTime}, Input={_inputVec}, Position={_rigid.position}");
         }
         Vector2 nextVec = _inputVec * _speed * Time.fixedDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);
+
+        if (_boxRb != null && _canMoveBox && _isKeyPressed)
+        {
+            _boxRb.MovePosition(_boxRb.position + nextVec);
+        }
     }
 
     public void DiePlayer()
@@ -99,7 +128,8 @@ public class PlayerController : MonoBehaviour
             {
                 Time = Time.fixedTime - _recordStartTime,
                 Input = Vector2.zero,
-                Position = _rigid.position
+                Position = _rigid.position,
+                Interact = false
             });
         }
         _isRecording = false;
@@ -113,6 +143,9 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Box"))
         {
+            _canMoveBox = true;
+            _box = collision.gameObject;
+            _boxRb = collision.rigidbody;
             _speed = 3.5f;
         }
     }
@@ -121,7 +154,12 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Box"))
         {
+            _canMoveBox = false;
+            _box = null;
+            _boxRb = null;
             _speed = 7f;
         }
     }
+
+    
 }
