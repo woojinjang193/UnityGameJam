@@ -10,7 +10,7 @@ public struct InputRecord
     public Vector2 Input;
     public Vector2 Position;
 }
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IInteractor
 {
     [SerializeField] private float _speed = 7;
 
@@ -27,11 +27,20 @@ public class PlayerController : MonoBehaviour
     private Color _startColor;
     private SpriteRenderer _spriteRenderer;
 
+    private bool _isKeyPressed;
+    private Vector2 _prevPos;
+    public Vector2 MoveDelta { get; private set; }
+
+    public int Id => 0;
+    public bool IsKeyPressed => _isKeyPressed;
+
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _startColor = _spriteRenderer.color;
+
+        _prevPos = _rigid.position;
     }
     private void OnEnable()
     {
@@ -65,6 +74,10 @@ public class PlayerController : MonoBehaviour
             Manager.Game.StartPlayer();
         }
     }
+    public void OnInteract(InputValue value)
+    {
+        _isKeyPressed = value.isPressed;
+    }
     private void FixedUpdate()
     {
         if (_isRecording && _inputVec != _lastRecordedInput)
@@ -80,6 +93,9 @@ public class PlayerController : MonoBehaviour
         }
         Vector2 nextVec = _inputVec * _speed * Time.fixedDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);
+
+        MoveDelta = _rigid.position - _prevPos;
+        _prevPos = _rigid.position;
     }
 
     public void DiePlayer()
@@ -115,4 +131,6 @@ public class PlayerController : MonoBehaviour
             _speed = 7f;
         }
     }
+
+    
 }

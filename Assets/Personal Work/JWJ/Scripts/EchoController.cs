@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EchoController : MonoBehaviour
+public class EchoController : MonoBehaviour, IInteractor
 {
     [SerializeField] private int _echoID;
+    [SerializeField] private float _speed = 7f;
     private List<InputRecord> _records;
     private int _curInputIndex;
-    [SerializeField] private float _speed = 7f;
+    
     private Rigidbody2D _rigid;
-
     private Vector2 _curInput = Vector2.zero;
 
     private bool _isPlaying = false;
@@ -17,11 +17,18 @@ public class EchoController : MonoBehaviour
 
     private Color _startColor;
     private SpriteRenderer _sr;
+
+    private bool _isKeyPressed;
+    private Vector2 _prevPos;
+    public Vector2 MoveDelta { get; private set; }
+    public int Id => _echoID;
+    public bool IsKeyPressed => _isKeyPressed;
+
     private void Awake()
     {
-        _startColor = GetComponent<SpriteRenderer>().color;
         _sr = GetComponent<SpriteRenderer>();
-
+        _rigid = GetComponent<Rigidbody2D>();
+        _startColor = _sr.color;
     }
 
     private void OnEnable()
@@ -41,11 +48,11 @@ public class EchoController : MonoBehaviour
     private void OnPlayerStart()
     {
         _startTime = Time.fixedTime;
-        _isPlaying = true; 
+        _isPlaying = true;
+        _prevPos = _rigid.position;
     }
     private void OnPlayerDied()
     {
-        //_isPlaying = false;
         _curInputIndex = 0;
         _curInput = Vector2.zero;
     }
@@ -53,13 +60,14 @@ public class EchoController : MonoBehaviour
     {
         _echoID = id;
         _records = new List<InputRecord>(record);
-        _rigid = GetComponent<Rigidbody2D>();
 
         _curInputIndex = 0;
         _curInput = Vector2.zero;
 
         _isPlaying = false;
+        _isKeyPressed = false;
         _startTime = recordStartTime;
+        _prevPos = transform.position;
     }
     public void ResetToSpawn(Vector2 spawnPoint)
     {
@@ -68,6 +76,9 @@ public class EchoController : MonoBehaviour
         _curInputIndex = 0;
         _curInput = Vector2.zero;
         _isPlaying = false;
+        _isKeyPressed = false;
+        _prevPos = spawnPoint;
+        MoveDelta = Vector2.zero;
     }
 
     private void FixedUpdate()
@@ -80,6 +91,9 @@ public class EchoController : MonoBehaviour
         if (_curInputIndex >= _records.Count)
         {
             _rigid.linearVelocity = Vector2.zero;
+
+            MoveDelta = _rigid.position - _prevPos;
+            _prevPos = _rigid.position;
             return;
         }
 
@@ -96,6 +110,10 @@ public class EchoController : MonoBehaviour
 
         Vector2 nextVec = _curInput * _speed * Time.fixedDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);
+    }
+    public void SetInteractPressed(bool pressed)
+    {
+        _isKeyPressed = pressed;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
