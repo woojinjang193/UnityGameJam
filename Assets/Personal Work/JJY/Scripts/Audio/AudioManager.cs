@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singleton<AudioManager>
 {
-    // 우진님 싱글톤?
-    public static AudioManager Instance { get; private set; }
 
     [Header("Mixer")]
     public AudioMixer mixer;
@@ -31,15 +29,9 @@ public class AudioManager : MonoBehaviour
     private AudioSource bgmSource;
     private List<AudioSource> sfxPool = new List<AudioSource>();
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        base.Awake();
 
         EnsureBgmSource();
         CreateSfxPool();

@@ -10,6 +10,9 @@ public class Timer : MonoBehaviour
 
     void Awake()
     {
+        Manager.Game.OnPlayerStart += StartCountdown;
+        Manager.Game.OnPlayerDied += ResetTimer;
+
         if (timerText == null)
         {
             GameObject timerObject = GameObject.Find("Timer");
@@ -27,14 +30,22 @@ public class Timer : MonoBehaviour
         UpdateTimerText(currentTime);
         ResetTimer();
     }
+
+    private void OnDisable()
+    {
+        Manager.Game.OnPlayerStart -= StartCountdown;
+        Manager.Game.OnPlayerDied -= ResetTimer;
+    }
     // 죽었을때 사용
     public void ResetTimer()
     {
-        if (tweener != null && tweener.IsActive())
-        {
-            tweener.Kill();
-        }
+        //if (tweener != null && tweener.IsActive())
+        //{
+        //    tweener.Kill();
+        //}
+        tweener.Kill();
         currentTime = 20;
+        //Debug.Log($"리셋리셋 {currentTime}");
         UpdateTimerText(currentTime);
     }
     // 입력시 사용
@@ -66,6 +77,14 @@ public class Timer : MonoBehaviour
     private void OnTimerComplete()
     {
         UpdateTimerText(0.00f);
+        Manager.Game.KillPlayer();
         Debug.Log("타이머 종료");
+    }
+    void OnDestroy()
+    {
+        if (tweener != null && tweener.IsActive())
+        {
+            tweener.Kill();
+        }
     }
 }

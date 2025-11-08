@@ -29,21 +29,21 @@ public class BGMTestController : MonoBehaviour
 
     private void PlayBGMForScene(string sceneName)
     {
-        if (AudioManager.Instance == null) return;
+        if (Manager.Audio == null) return;
 
         switch (sceneName)
         {
             case "MainMenu":
-                AudioManager.Instance.PlayBGM(mainMenuBGM, true, 1f);
+                Manager.Audio.PlayBGM(mainMenuBGM, true, 1f);
                 break;
             case "Stage1":
-                AudioManager.Instance.PlayBGM(stage1BGM, true, 1f);
+                Manager.Audio.PlayBGM(stage1BGM, true, 1f);
                 break;
             case "Stage2":
-                AudioManager.Instance.PlayBGM(stage2BGM, true, 1f);
+                Manager.Audio.PlayBGM(stage2BGM, true, 1f);
                 break;
             default:
-                AudioManager.Instance.StopBGM(0.5f);
+                Manager.Audio.StopBGM(0.5f);
                 break;
         }
     }

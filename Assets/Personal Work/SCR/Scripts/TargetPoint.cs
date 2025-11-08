@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TargetPoint : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class TargetPoint : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (goNextCor != null)
+            Debug.Log("충돌");
+            if (goNextCor == null)
                 goNextCor = StartCoroutine(GoNextStage());
         }
     }
@@ -16,6 +18,7 @@ public class TargetPoint : MonoBehaviour
     private IEnumerator GoNextStage()
     {
         yield return new WaitForSeconds(1.5f);
-        // 다음 스테이지 가는 함수 작성
+        Manager.Game.LevelUp();
+        SceneManager.LoadScene("map");
     }
 }

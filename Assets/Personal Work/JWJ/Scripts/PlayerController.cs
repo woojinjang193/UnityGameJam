@@ -24,10 +24,13 @@ public class PlayerController : MonoBehaviour
     private bool _isRecording = false;
     private bool _isPlaying = false;
     private float _recordStartTime;
+    private Color _startColor;
+    private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
+        _startColor = GetComponent<SpriteRenderer>().color;
     }
     private void OnEnable()
     {
@@ -36,6 +39,9 @@ public class PlayerController : MonoBehaviour
         _isPlaying = false;
         _lastRecordedInput = Vector2.positiveInfinity;
         _inputVec = Vector2.zero;
+        _startColor.a = 1;
+        _spriteRenderer.color = _startColor;
+        transform.localScale = new Vector3(1, 1, 1);
     }
     public void OnMove(InputValue value)
     {
@@ -69,7 +75,7 @@ public class PlayerController : MonoBehaviour
                 Position = _rigid.position
             });
             _lastRecordedInput = _inputVec;
-            Debug.Log($"[Player] 입력 기록: Time={Time.fixedTime}, Input={_inputVec}, Position={_rigid.position}");
+            //Debug.Log($"[Player] 입력 기록: Time={Time.fixedTime}, Input={_inputVec}, Position={_rigid.position}");
         }
         Vector2 nextVec = _inputVec * _speed * Time.fixedDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);
@@ -93,4 +99,19 @@ public class PlayerController : MonoBehaviour
         Manager.Game.PlayerDieAndSave(_records, gameObject, _dieCount, _recordStartTime);
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Box"))
+        {
+            _speed = 3.5f;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Box"))
+        {
+            _speed = 7f;
+        }
+    }
 }
