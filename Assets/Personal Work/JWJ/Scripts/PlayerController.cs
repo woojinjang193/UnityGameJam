@@ -1,9 +1,7 @@
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 [Serializable]
 public struct InputRecord
@@ -16,7 +14,6 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _speed = 7;
 
-    private GameObject _player;
     private Vector2 _inputVec;
     private Rigidbody2D _rigid;
     private int _dieCount = 0;
@@ -26,13 +23,11 @@ public class PlayerController : MonoBehaviour
 
     private bool _isRecording = false;
     private bool _isPlaying = false;
-    public bool IsPlaying => _isPlaying;
     private float _recordStartTime;
 
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
-        _player = gameObject;
     }
     private void OnEnable()
     {
@@ -95,7 +90,7 @@ public class PlayerController : MonoBehaviour
         _inputVec = Vector2.zero;
 
         _dieCount++;
-        Manager.Game.PlayerDieAndSave(_records, _player, _dieCount, _recordStartTime);
+        Manager.Game.PlayerDieAndSave(_records, gameObject, _dieCount, _recordStartTime);
     }
 
 }

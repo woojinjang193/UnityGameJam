@@ -1,7 +1,5 @@
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EchoController : MonoBehaviour
@@ -13,7 +11,6 @@ public class EchoController : MonoBehaviour
     private Rigidbody2D _rigid;
 
     private Vector2 _curInput = Vector2.zero;
-    private Vector2 _spawnPoint = Vector2.zero;
 
     private bool _isPlaying = false;
     private float _startTime;
