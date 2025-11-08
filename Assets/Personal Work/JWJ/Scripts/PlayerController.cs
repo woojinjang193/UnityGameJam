@@ -10,6 +10,7 @@ public struct InputRecord
 {
     public float Time;
     public Vector2 Input;
+    public Vector2 Position;
 }
 public class PlayerController : MonoBehaviour
 {
@@ -54,7 +55,8 @@ public class PlayerController : MonoBehaviour
             _records.Add(new InputRecord
             {
                 Time = 0f,
-                Input = _inputVec
+                Input = _inputVec,
+                Position = _rigid.position
             });
             _lastRecordedInput = _inputVec;
 
@@ -68,7 +70,8 @@ public class PlayerController : MonoBehaviour
             _records.Add(new InputRecord
             {
                 Time = Time.fixedTime - _recordStartTime,
-                Input = _inputVec
+                Input = _inputVec,
+                Position = _rigid.position
             });
             _lastRecordedInput = _inputVec;
             Debug.Log($"[Player] 입력 기록: Time={Time.fixedTime}, Input={_inputVec}, Position={_rigid.position}");
@@ -84,14 +87,15 @@ public class PlayerController : MonoBehaviour
             _records.Add(new InputRecord
             {
                 Time = Time.fixedTime - _recordStartTime,
-                Input = Vector2.zero
+                Input = Vector2.zero,
+                Position = _rigid.position
             });
         }
         _isRecording = false;
         _inputVec = Vector2.zero;
 
         _dieCount++;
-        Manager.Game.PlayerDieAndSave(_records, _player, _dieCount);
+        Manager.Game.PlayerDieAndSave(_records, _player, _dieCount, _recordStartTime);
     }
 
 }

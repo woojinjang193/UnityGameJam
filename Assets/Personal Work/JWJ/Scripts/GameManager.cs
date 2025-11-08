@@ -37,18 +37,18 @@ public class GameManager : Singleton<GameManager>
             Debug.LogError($"Echo 로드 실패: {handle.OperationException}");
         }
     }
-    
+
     //플레이어 사망시
-    public void PlayerDieAndSave(List<InputRecord> records ,GameObject player, int echoID)
+    public void PlayerDieAndSave(List<InputRecord> records, GameObject player, int echoID, float recordStartTime)
     {
         player.SetActive(false);
         //Debug.Log("플레이어 사망");
         OnPlayerDied?.Invoke(); //플레이어 죽음 이벤트 발생
 
-        StartCoroutine(RespawnRotine(records, player, echoID));
+        StartCoroutine(RespawnRotine(records, player, echoID, recordStartTime));
     }
 
-    private IEnumerator RespawnRotine(List<InputRecord> records, GameObject player, int id)
+    private IEnumerator RespawnRotine(List<InputRecord> records, GameObject player, int id, float startTime)
     {
         yield return new WaitForSeconds(_spawnDelayTime);
 
@@ -59,7 +59,7 @@ public class GameManager : Singleton<GameManager>
 
         var echo = Instantiate(_echo, _spawnPoint, Quaternion.identity);
         var controller = echo.GetComponent<EchoController>();
-        controller.Init(records, id);
+        controller.Init(records, id, startTime);
         _echos.Add(controller);
 
         player.transform.position = _spawnPoint;

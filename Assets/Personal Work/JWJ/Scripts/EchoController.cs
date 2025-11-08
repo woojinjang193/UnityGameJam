@@ -40,7 +40,7 @@ public class EchoController : MonoBehaviour
         _curInputIndex = 0;
         _curInput = Vector2.zero;
     }
-    public void Init(List<InputRecord> record, int id)
+    public void Init(List<InputRecord> record, int id, float recordStartTime)
     {
         _echoID = id;
         _records = new List<InputRecord>(record);
@@ -50,7 +50,7 @@ public class EchoController : MonoBehaviour
         _curInput = Vector2.zero;
 
         _isPlaying = false;
-        _startTime = 0f;
+        _startTime = recordStartTime;
     }
     public void ResetToSpawn(Vector2 spawnPoint)
     {
@@ -80,6 +80,7 @@ public class EchoController : MonoBehaviour
         while (_curInputIndex < _records.Count && elapsed >= _records[_curInputIndex].Time)
         {
             _curInput = _records[_curInputIndex].Input;
+            _rigid.position = _records[_curInputIndex].Position;
             Debug.Log($"[Echo {_echoID}] 입력 적용: Elapsed={elapsed}, RecordTime={_records[_curInputIndex].Time}, Input={_curInput}, Position={_rigid.position}");
             _curInputIndex++;
         }
