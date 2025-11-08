@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour
     public AudioMixerGroup sfxGroup;
 
     [Header("AudioSources")]
-    public AudioSource bgmSourcePrefab;
+    public AudioSource titleBGM;
     public int sfxPoolSize = 10;
 
     private const string MASTER_PARAM = "MasterVolume";
@@ -59,9 +59,9 @@ public class AudioManager : MonoBehaviour
     {
         if (bgmSource == null)
         {
-            if (bgmSourcePrefab != null)
+            if (titleBGM != null)
             {
-                bgmSource = Instantiate(bgmSourcePrefab, transform);
+                bgmSource = Instantiate(titleBGM, transform);
             }
             else
             {
