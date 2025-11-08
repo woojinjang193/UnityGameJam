@@ -7357,6 +7357,8 @@ MonoBehaviour:
   stageNum: 3
   stageName: Together
   respawnPoint: {fileID: 1561844211}
+  IsBox: 0
+  BoxTransform: {fileID: 0}
 --- !u!4 &124033513
 Transform:
   m_ObjectHideFlags: 0
@@ -7600,6 +7602,8 @@ MonoBehaviour:
   stageNum: 1
   stageName: 0
   respawnPoint: {fileID: 1322116174}
+  IsBox: 0
+  BoxTransform: {fileID: 0}
 --- !u!1001 &157094743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10244,6 +10248,8 @@ MonoBehaviour:
   stageNum: 6
   stageName: Sacrifice
   respawnPoint: {fileID: 1422372009}
+  IsBox: 0
+  BoxTransform: {fileID: 0}
 --- !u!4 &245315973
 Transform:
   m_ObjectHideFlags: 0
@@ -10295,6 +10301,8 @@ MonoBehaviour:
   stageNum: 8
   stageName: Rocket
   respawnPoint: {fileID: 1051883213}
+  IsBox: 0
+  BoxTransform: {fileID: 0}
 --- !u!4 &260237680
 Transform:
   m_ObjectHideFlags: 0
@@ -20595,11 +20603,6 @@ RectTransform:
   m_AnchoredPosition: {x: -7.7919, y: -18.5203}
   m_SizeDelta: {x: 500.8883, y: 85.3536}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &470383584 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8150476868300563375, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-  m_PrefabInstance: {fileID: 1959716950}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &476750935
 GameObject:
   m_ObjectHideFlags: 0
@@ -42530,6 +42533,8 @@ MonoBehaviour:
   stageNum: 7
   stageName: Harmony
   respawnPoint: {fileID: 1630683151}
+  IsBox: 0
+  BoxTransform: {fileID: 0}
 --- !u!4 &1167492432
 Transform:
   m_ObjectHideFlags: 0
@@ -46560,6 +46565,8 @@ MonoBehaviour:
   stageNum: 5
   stageName: Mirror
   respawnPoint: {fileID: 1508457037}
+  IsBox: 0
+  BoxTransform: {fileID: 0}
 --- !u!4 &1293393491
 Transform:
   m_ObjectHideFlags: 0
@@ -54777,6 +54784,8 @@ MonoBehaviour:
   stageNum: 1
   stageName: 0
   respawnPoint: {fileID: 675453340}
+  IsBox: 0
+  BoxTransform: {fileID: 0}
 --- !u!4 &1340115493
 Transform:
   m_ObjectHideFlags: 0
@@ -66287,6 +66296,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519439041}
   m_CullTransparentMesh: 1
+--- !u!1 &1528466903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1528466904}
+  m_Layer: 0
+  m_Name: BoxPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1528466904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528466903}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4, y: -5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2100062302}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1539701300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67220,6 +67260,8 @@ MonoBehaviour:
   stageNum: 1
   stageName: 0
   respawnPoint: {fileID: 1508883597}
+  IsBox: 0
+  BoxTransform: {fileID: 0}
 --- !u!4 &1621342722
 Transform:
   m_ObjectHideFlags: 0
@@ -78563,105 +78605,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926b3519065091b4e8ba96b2242b3349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetPoint
---- !u!1001 &1959716950
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2100062302}
-    m_Modifications:
-    - target: {fileID: 8150476868300563361, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-      propertyPath: m_Mass
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150476868300563372, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-      propertyPath: m_Name
-      value: Box
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150476868300563372, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-      propertyPath: m_TagString
-      value: Box
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150476868300563375, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150476868300563375, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150476868300563375, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150476868300563375, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150476868300563375, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150476868300563375, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150476868300563375, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150476868300563375, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150476868300563375, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150476868300563375, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150476868737220291, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150476868737220291, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150476868737220291, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8150476868300563372, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1959716952}
-  m_SourcePrefab: {fileID: 100100000, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
---- !u!1 &1959716951 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8150476868300563372, guid: 2e2ac125e54a1e44780363d638b1df34, type: 3}
-  m_PrefabInstance: {fileID: 1959716950}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1959716952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1959716951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16bdefb6c4799dd4aa8699cf1231f04d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BoxInteraction
-  _playerOnly: 1
-  _ownerId: 0
 --- !u!1 &1975081737
 GameObject:
   m_ObjectHideFlags: 0
@@ -79022,6 +78965,8 @@ MonoBehaviour:
   stageNum: 4
   stageName: Shadow
   respawnPoint: {fileID: 378004121}
+  IsBox: 0
+  BoxTransform: {fileID: 0}
 --- !u!4 &2007072914
 Transform:
   m_ObjectHideFlags: 0
@@ -79455,7 +79400,7 @@ Transform:
   - {fileID: 659486837}
   - {fileID: 1424415050}
   - {fileID: 343789171}
-  - {fileID: 470383584}
+  - {fileID: 1528466904}
   m_Father: {fileID: 234351416}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2100062303
@@ -79473,6 +79418,8 @@ MonoBehaviour:
   stageNum: 2
   stageName: 2
   respawnPoint: {fileID: 343789171}
+  IsBox: 1
+  BoxTransform: {fileID: 1528466904}
 --- !u!1 &2103033989
 GameObject:
   m_ObjectHideFlags: 0

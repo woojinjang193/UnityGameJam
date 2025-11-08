@@ -9,6 +9,7 @@ public struct InputRecord
     public float Time;
     public Vector2 Input;
     public Vector2 Position;
+    public bool Interact;
 }
 public class PlayerController : MonoBehaviour
 {
@@ -65,7 +66,8 @@ public class PlayerController : MonoBehaviour
             {
                 Time = 0f,
                 Input = _inputVec,
-                Position = _rigid.position
+                Position = _rigid.position,
+                Interact = _isKeyPressed
             });
             _lastRecordedInput = _inputVec;
 
@@ -83,6 +85,17 @@ public class PlayerController : MonoBehaviour
     public void OnInteract(InputValue value)
     {
         _isKeyPressed = value.isPressed;
+
+        if (_isRecording)
+        {
+            _records.Add(new InputRecord
+            {
+                Time = Time.fixedTime - _recordStartTime,
+                Input = _inputVec,
+                Position = _rigid.position,
+                Interact = _isKeyPressed
+            });
+        }
     }
     private void FixedUpdate()
     {
@@ -92,7 +105,8 @@ public class PlayerController : MonoBehaviour
             {
                 Time = Time.fixedTime - _recordStartTime,
                 Input = _inputVec,
-                Position = _rigid.position
+                Position = _rigid.position,
+                Interact = _isKeyPressed
             });
             _lastRecordedInput = _inputVec;
             //Debug.Log($"[Player] 입력 기록: Time={Time.fixedTime}, Input={_inputVec}, Position={_rigid.position}");
@@ -114,7 +128,8 @@ public class PlayerController : MonoBehaviour
             {
                 Time = Time.fixedTime - _recordStartTime,
                 Input = Vector2.zero,
-                Position = _rigid.position
+                Position = _rigid.position,
+                Interact = false
             });
         }
         _isRecording = false;

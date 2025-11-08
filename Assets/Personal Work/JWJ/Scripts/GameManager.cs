@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -16,12 +17,16 @@ public class GameManager : Singleton<GameManager>
     private GameObject _box;
     public Transform PlayerTransform;
     private Vector2 _spawnPoint = Vector2.zero;
+    private Vector2 _boxPos = Vector2.zero;
 
     private List<EchoController> _echos = new List<EchoController>();
     private PlayerController _playerCon;
 
     public event Action OnPlayerDied;
     public event Action OnPlayerStart;
+
+    private bool _isBox = false;
+    private int _echoID = 0;
     protected override void Awake()
     {
         base.Awake();
@@ -84,6 +89,7 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator RespawnRotine(List<InputRecord> records, GameObject player, int id, float startTime)
     {
+        _echoID = id;
         yield return new WaitForSeconds(_spawnDelayTime);
 
         foreach (var ech in _echos)
@@ -93,12 +99,17 @@ public class GameManager : Singleton<GameManager>
 
         var echo = Instantiate(_echo, _spawnPoint, Quaternion.identity);
         var controller = echo.GetComponent<EchoController>();
-        controller.Init(records, id, startTime);
+        controller.Init(records, _echoID, startTime);
         _echos.Add(controller);
 
         player.transform.position = _spawnPoint;
         player.transform.rotation = Quaternion.identity;
         player.SetActive(true);
+
+        if(_isBox)
+        {
+            SpawnBox(false);
+        }
         //Debug.Log("플레이어, 에코 프리팹 소환");
     }
 
@@ -113,9 +124,16 @@ public class GameManager : Singleton<GameManager>
         _echos.Clear();
     }
 
-    public void SetRespawnPoint(Vector2 pos)
+    public void SetRespawnPoint(Vector2 pos, Stage stage)
     {
         _spawnPoint = pos;
+        _isBox = false;
+        if (stage.IsBox)
+        {
+            _isBox = true;
+            _boxPos = new Vector2(stage.BoxTransform.position.x, stage.BoxTransform.position.y);
+            SpawnBox(true);
+        }
     }
     public void SpawnPlayer()
     {
@@ -127,5 +145,11 @@ public class GameManager : Singleton<GameManager>
     public void KillPlayer()
     {
         _playerCon.DiePlayer();
+    }
+
+    private void SpawnBox(bool isForPlayer)
+    {
+        var box = Instantiate(_box, _boxPos, Quaternion.identity).GetComponent<BoxInteraction>();
+        box.SetBox(isForPlayer, _echoID);
     }
 }

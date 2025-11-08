@@ -103,6 +103,7 @@ MonoBehaviour:
     - default
     - Echo
     - Player
+    - Box
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 7119701c4e413164daa93029412eec45, type: 2}
