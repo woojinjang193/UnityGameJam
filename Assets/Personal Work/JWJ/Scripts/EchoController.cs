@@ -33,7 +33,7 @@ public class EchoController : MonoBehaviour
     }
     private void OnPlayerDied()
     {
-        _isPlaying = false;
+        //_isPlaying = false;
         _curInputIndex = 0;
         _curInput = Vector2.zero;
     }

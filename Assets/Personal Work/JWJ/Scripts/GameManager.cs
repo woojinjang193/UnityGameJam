@@ -7,7 +7,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class GameManager : Singleton<GameManager>
 {
-    private float _spawnDelayTime = 5;
+    private float _spawnDelayTime = 2;
 
     private GameObject _echo;
     private Vector2 _spawnPoint = Vector2.zero;
