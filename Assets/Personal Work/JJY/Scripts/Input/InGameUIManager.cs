@@ -1,11 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
-public class InGameUIManager : MonoBehaviour
+public class OptionSettingManager : MonoBehaviour
 {
-    [SerializeField] private Button optionButton;
-    [SerializeField] private GameObject optionsPanel;
+    [SerializeField] private GameObject[] settingPanels;
     private PlayerInput playerInput;
     private InputAction cancelAction;
 
@@ -13,7 +11,6 @@ public class InGameUIManager : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         cancelAction = playerInput.actions["Cancel"];
-        optionButton.onClick.AddListener(OpenSettings);
     }
 
     void OnEnable()
@@ -28,19 +25,12 @@ public class InGameUIManager : MonoBehaviour
 
     private void OnCancel(InputAction.CallbackContext context)
     {
-        if (optionsPanel.activeSelf)
+        foreach (GameObject go in settingPanels)
         {
-            CloseSettings();
+            if (go.activeSelf)
+            {
+                go.SetActive(false);
+            }
         }
-    }
-
-    public void OpenSettings()
-    {
-        optionsPanel.SetActive(true);
-    }
-
-    public void CloseSettings()
-    {
-        optionsPanel.SetActive(false);
     }
 }
