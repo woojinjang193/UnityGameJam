@@ -191,12 +191,12 @@ public class EchoController : MonoBehaviour
     {
         if (!other.CompareTag("Box")) return;
 
-        // 현재 밀던 박스만 해제
-        if (_boxRb != null && other.attachedRigidbody == _boxRb)
+        if (!_isKeyPressed) //키 안누르고 있을 때만 놓기
         {
             _box.SetMovable(false);
             _boxRb = null;
             _box = null;
+            _faceLocked = false;
             animator.Play($"Idle{beforedic}");
         }
     }
