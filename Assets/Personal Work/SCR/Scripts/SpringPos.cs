@@ -48,6 +48,11 @@ public class SpringPos : MonoBehaviour
             if (coll == null) continue;
             Rigidbody2D rb = coll.attachedRigidbody;
 
+            if (coll.gameObject.GetComponent<CheckGround>() != null)
+            {
+                coll.gameObject.GetComponent<CheckGround>().PushedObj();
+            }
+
             if (coll.gameObject.GetComponent<PlayerController>() != null)
             {
                 coll.gameObject.GetComponent<PlayerController>().PushPlayer();
