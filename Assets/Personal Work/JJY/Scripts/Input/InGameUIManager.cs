@@ -109,12 +109,12 @@ public class InGameUIManager : MonoBehaviour
     public void NewGame()
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.clickSFX);
-        SceneManager.LoadScene("Title");
+        SceneManager.LoadScene("InGame");
     }
     public void ExtiToTitle()
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.clickSFX);
-        SceneManager.LoadScene("TestMap");
+        SceneManager.LoadScene("Title");
         Manager.Game.InitLevel();
     }
 }
