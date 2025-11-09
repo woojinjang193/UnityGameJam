@@ -35,7 +35,7 @@ public class StageManager : MonoBehaviour
     private void ShowStageTitle()
     {
         stageTitle.alpha = 1f;
-        stageTitle.DOFade(0f, 1.5f) // 점점 투명해짐
+        stageTitle.DOFade(0f, 2.5f) // 점점 투명해짐
             .SetEase(Ease.InOutQuad);
     }
 }
