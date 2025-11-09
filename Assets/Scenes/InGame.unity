@@ -24074,7 +24074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &423697193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55257,6 +55257,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1403869279}
     m_Modifications:
+    - target: {fileID: 10145298200545765, guid: 413081fc53a78a043b38591243616398, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2055102311959635368, guid: 413081fc53a78a043b38591243616398, type: 3}
       propertyPath: m_SortingLayer
       value: 1
@@ -74743,7 +74747,8 @@ MonoBehaviour:
   fireObj: {fileID: 926408964}
   isFlame: 0
   isOn: 
-  gimmics: []
+  gimmics:
+  - {fileID: 780158696}
 --- !u!1 &1871645640
 GameObject:
   m_ObjectHideFlags: 0
@@ -86408,7 +86413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2011506794
 RectTransform:
   m_ObjectHideFlags: 0
