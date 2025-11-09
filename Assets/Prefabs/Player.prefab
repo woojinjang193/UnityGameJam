@@ -99,13 +99,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2652840049704164584}
+  - component: {fileID: 2464810460712230817}
   - component: {fileID: 3433632921680626547}
   - component: {fileID: 4453185861375042237}
+  - component: {fileID: 8072157118898766473}
   - component: {fileID: 8190790348812862510}
   - component: {fileID: 3636592110460901324}
   - component: {fileID: 7225900704813426682}
   - component: {fileID: 1799106561740045767}
-  - component: {fileID: 6583183578780382817}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -129,6 +130,19 @@ Transform:
   - {fileID: 2142455780768560795}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2464810460712230817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7832002416735997846}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abd146093740c5d43b5909c7913f3109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
 --- !u!212 &3433632921680626547
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -225,7 +239,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 8, y: 10.8}
+    oldSize: {x: 7.94, y: 10.69}
     newSize: {x: 1, y: 1.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
@@ -233,6 +247,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5865278, y: 0.36506104}
   m_EdgeRadius: 0
+--- !u!50 &8072157118898766473
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7832002416735997846}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!95 &8190790348812862510
 Animator:
   serializedVersion: 7
@@ -317,30 +358,3 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!50 &6583183578780382817
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7832002416735997846}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0

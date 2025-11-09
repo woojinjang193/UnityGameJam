@@ -15,12 +15,6 @@ MonoBehaviour:
   m_GroupName: JWJ
   m_GUID: 0fe6987af8239284a8500dfafff8b405
   m_SerializeEntries:
-  - m_GUID: 76b15449a1091f34591f231f97242019
-    m_Address: Assets/Prefabs/Box.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Box
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7877619dbca19a44fb2e3690d2dd3eb5
     m_Address: Assets/Prefabs/Player.prefab
     m_ReadOnly: 0
