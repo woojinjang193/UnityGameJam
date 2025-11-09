@@ -11,6 +11,8 @@ public class StageManager : MonoBehaviour
     public Vector2 SpawnPos;
     [SerializeField] private CinemachineCamera cinemachine;
     [SerializeField] TMP_Text stageTitle;
+
+    public List<Stage> Stages => _stages;
     private void Awake()
     {
         int index = Manager.Game.CurStage - 1;

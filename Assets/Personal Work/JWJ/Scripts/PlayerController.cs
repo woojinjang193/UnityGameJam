@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public struct InputRecord
@@ -151,7 +152,7 @@ public class PlayerController : MonoBehaviour
         }
         if (_ending)
         {
-            // 게임 매니져에서 마지막 씬으로 이동하게 하기
+            SceneManager.LoadScene("Outro");
         }
 
         if (_isRecording)
@@ -237,7 +238,10 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Fire"))
         {
+            _canMoveBox = false;
             _box = null;
+            _boxRb = null;
+            _faceLocked = false;
         }
         if (other.CompareTag("Rocket"))
         {
