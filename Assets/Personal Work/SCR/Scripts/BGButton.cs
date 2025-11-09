@@ -5,6 +5,7 @@ public class BGButton : Gimmic
 {
     [SerializeField] GameObject OnButtonObj;
     [SerializeField] GameObject OffButtonObj;
+    [SerializeField] GameObject CreateBridgeObj;
     private int playerNum = 0;
 
     void Start()
@@ -19,6 +20,7 @@ public class BGButton : Gimmic
         OnButtonObj.SetActive(isOn);
         OffButtonObj.SetActive(!isOn);
         OnGimmic?.Invoke(isOn);
+        if (CreateBridgeObj != null) CreateBridgeObj.SetActive(isOn);
     }
 
     private void OnValidate()

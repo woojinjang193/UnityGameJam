@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     private bool _canMoveBox = false;
     private GameObject _box;
     private Rigidbody2D _boxRb;
+    private bool _ending = false;
 
     //애니메이션 방향 잠금용
     private bool _faceLocked = false;
@@ -118,10 +119,28 @@ public class PlayerController : MonoBehaviour
             animator.Play($"Idle{(_faceLocked ? _lockedDir : beforedic)}", 0, 0f);
         }
     }
-  
+
     public void OnInteract(InputValue value)
     {
         _isKeyPressed = value.isPressed;
+
+        if (!value.isPressed)
+        {
+            if (_box != null)
+            {
+                _canMoveBox = false;
+
+                _boxRb = null;
+                _faceLocked = false;
+                var box = _box.GetComponent<BoxInteraction>();
+                box.SetMovable(false);
+                _box = null;
+            }
+        }
+        if (_ending)
+        {
+            // 게임 매니져에서 마지막 씬으로 이동하게 하기
+        }
 
         if (_isRecording)
         {
@@ -202,8 +221,21 @@ public class PlayerController : MonoBehaviour
         Manager.Game.PlayerDieAndSave(_records, gameObject, _dieCount, _recordStartTime);
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Fire"))
+        {
+            _box = null;
+        }
+        if (other.CompareTag("Rocket"))
+        {
+            _ending = true;
+        }
+    }
+
     void OnTriggerStay2D(Collider2D other)
     {
+
         if (!other.CompareTag("Box")) return;
 
         var box = other.GetComponent<BoxInteraction>();
