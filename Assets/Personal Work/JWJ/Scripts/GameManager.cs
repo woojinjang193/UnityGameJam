@@ -198,13 +198,16 @@ public class GameManager : Singleton<GameManager>
     public void SetRespawnPoint(Vector2 pos, Stage stage)
     {
         _echos.Clear();
+        _boxes.Clear();
+        _firesH.Clear();
+        _firesV.Clear();
         _spawnPoint = pos;
         _boxPosList.Clear();
         _isBox = stage.IsBox;
 
         if (_isBox && stage.BoxTransform != null)
         {
-            if (CurStage == 7)
+            if (CurStage == 4 || CurStage == 8)
             {
                 _fireHPos = new Vector2(stage.BoxTransform[0].transform.position.x, stage.BoxTransform[0].transform.position.y);
                 _fireVPos = new Vector2(stage.BoxTransform[1].transform.position.x, stage.BoxTransform[1].transform.position.y);
