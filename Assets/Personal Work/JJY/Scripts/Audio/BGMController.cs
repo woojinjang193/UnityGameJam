@@ -8,8 +8,8 @@ public class BGMController : MonoBehaviour
     [SerializeField] private AudioClip stage1to3;
     [SerializeField] private AudioClip stage4to7;
     [SerializeField] private AudioClip stage8;
-    [SerializeField] private AudioClip stage910;
-    [SerializeField] private AudioClip stage11;
+    // [SerializeField] private AudioClip stage910;
+    // [SerializeField] private AudioClip stage11;
 
     private AudioClip currentBGM = null;
 
@@ -41,8 +41,8 @@ public class BGMController : MonoBehaviour
         else if (value >= 1 && value <= 3) nextBGM = stage1to3;
         else if (value >= 4 && value <= 7) nextBGM = stage4to7;
         else if (value == 8) nextBGM = stage8;
-        else if (value >= 9 && value <= 10) nextBGM = stage910;
-        else if (value == 11) nextBGM = stage11;
+        // else if (value >= 9 && value <= 10) nextBGM = stage910;
+        // else if (value == 11) nextBGM = stage11;
         else
         {
             if (currentBGM != null)

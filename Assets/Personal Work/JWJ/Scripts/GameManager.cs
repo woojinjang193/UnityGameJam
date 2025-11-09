@@ -157,11 +157,15 @@ public class GameManager : Singleton<GameManager>
         var player = Instantiate(_player, _spawnPoint, Quaternion.identity);
         PlayerTransform = player.transform;
         _playerCon = player.GetComponent<PlayerController>();
+        // audio 재영 추가
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.spawnSFX);
     }
 
     public void KillPlayer()
     {
         _playerCon.DiePlayer();
+        // audio 재영 추가
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.deathSFX);
     }
 
     private void SpawnBoxes(bool isForPlayer)
