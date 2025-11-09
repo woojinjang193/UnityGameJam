@@ -141,6 +141,11 @@ public class EchoController : MonoBehaviour
 
         if (!_isPushing)
         {
+            if (_box != null)
+            {
+                _box.SetMovable(false);
+            }
+            
             string dir = beforedic;
             if (_curInput.x <= -0.5f) dir = "W";
             else if (_curInput.x >= 0.5f) dir = "E";
@@ -193,7 +198,11 @@ public class EchoController : MonoBehaviour
 
         if (!_isKeyPressed) //키 안누르고 있을 때만 놓기
         {
-            _box.SetMovable(false);
+            if(_box != null)
+            {
+                _box.SetMovable(false);
+            }
+            
             _boxRb = null;
             _box = null;
             _faceLocked = false;

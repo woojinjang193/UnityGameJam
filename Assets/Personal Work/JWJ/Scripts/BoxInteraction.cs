@@ -31,7 +31,7 @@ public class BoxInteraction : MonoBehaviour
     }
     public void SetMovable(bool canMove)
     {
-        _rb.bodyType = canMove ? RigidbodyType2D.Dynamic : RigidbodyType2D.Static;
+        _rb.bodyType = canMove ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
     }
 
     public void SetBox(bool isForPlayer, int ownerId, Vector2 spawnPos)
