@@ -155,8 +155,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -5.326, y: -8.8767}
+  m_SizeDelta: {x: 110.0719, y: 88.7678}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1386602
 Animator:
@@ -248,7 +248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &29282692
 RectTransform:
   m_ObjectHideFlags: 0
@@ -267,9 +267,9 @@ RectTransform:
   m_Father: {fileID: 1613622261}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -342.53772}
-  m_SizeDelta: {x: 0, y: -685.0754}
+  m_AnchorMax: {x: 1, y: 0.36362967}
+  m_AnchoredPosition: {x: -0.41577148, y: -12.221985}
+  m_SizeDelta: {x: 43.3516, y: 28.2932}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &29282693
 MonoBehaviour:
@@ -935,10 +935,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Dialogue
   _lines:
   - The moon.. a beauty that lights the darkness no matter how time passes.
-  - I wish I could became that moon.
-  - I got your wish.
-  - 'I will give you twenty seconds of eternity. '
-  - Become the moon yourself.
+  - I wish I was the moon.
+  - I heard your wish.
+  - I will give a change to become the moon.
+  - let me take you to our world where the time overlaps.
+  - Finish the puzzles and find us to reach the moon.
   _chatBox: {fileID: 29282691}
   _nextButton: {fileID: 566360869}
   _SkipButton: {fileID: 1081591491}
@@ -1319,8 +1320,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 152.97029}
-  m_SizeDelta: {x: 1454.1, y: 305.9405}
+  m_AnchoredPosition: {x: 0.0063972, y: 109.09582}
+  m_SizeDelta: {x: 1323.3, y: 218.1915}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1202003993
 MonoBehaviour:
@@ -1369,8 +1370,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1407,7 +1408,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 247.66302, y: 0, z: 148.59778, w: 0}
+  m_margin: {x: 228.72739, y: 0, z: 148.59778, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1619,10 +1620,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
