@@ -8,7 +8,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class GameManager : Singleton<GameManager>
 {
     public int CurStage; //{ get; private set; }
-
+    public int Coin;
     private float _spawnDelayTime = 2;
 
     private GameObject _echo;

@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private bool _canMoveBox = false;
     private GameObject _box;
     private Rigidbody2D _boxRb;
+    private bool _canTalk = false;
+    private GameObject _ailen;
     private bool _ending = false;
 
     //애니메이션 방향 잠금용
@@ -159,6 +161,11 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("Outro");
         }
 
+        if (_canTalk)
+        {
+            _ailen.GetComponent<Alien>().CheckCoin();
+        }
+
         if (_isRecording)
         {
             _records.Add(new InputRecord
@@ -251,6 +258,11 @@ public class PlayerController : MonoBehaviour
         {
             _ending = true;
         }
+        if (other.CompareTag("Ailen"))
+        {
+            _canTalk = true;
+            _ailen = other.gameObject;
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -285,6 +297,15 @@ public class PlayerController : MonoBehaviour
             box.SetMovable(false);
 
             _faceLocked = false;
+        }
+        if (other.CompareTag("Rocket"))
+        {
+            _ending = false;
+        }
+        if (other.CompareTag("Ailen"))
+        {
+            _canTalk = false;
+            _ailen = null;
         }
     }
 
