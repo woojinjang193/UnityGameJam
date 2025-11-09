@@ -7,6 +7,7 @@ public class TitleUIManager : MonoBehaviour
 {
     [SerializeField] private Button settingButton1;
     [SerializeField] private Button settingButton2;
+    [SerializeField] private Button closeSettingButton;
     [SerializeField] private GameObject settingsPanel;
     private PanelController panelController;
     private PlayerInput playerInput;
@@ -24,11 +25,13 @@ public class TitleUIManager : MonoBehaviour
     void OnEnable()
     {
         cancelAction.performed += OnCancel;
+        closeSettingButton.onClick.AddListener(OnClickClosePanel);
     }
 
     void OnDisable()
     {
         cancelAction.performed -= OnCancel;
+        closeSettingButton.onClick.RemoveListener(OnClickClosePanel);
     }
 
     private void OnCancel(InputAction.CallbackContext context)
@@ -41,9 +44,15 @@ public class TitleUIManager : MonoBehaviour
 
     public void OpenSettings()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.clickSFX);
         panelController.OpenPanel();
     }
 
+    private void OnClickClosePanel()
+    {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.clickSFX);
+        CloseSettings();
+    }
     public void CloseSettings()
     {
         panelController.ClosePanel();
