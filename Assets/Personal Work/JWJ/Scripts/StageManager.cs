@@ -15,13 +15,13 @@ public class StageManager : MonoBehaviour
     {
         int index = Manager.Game.CurStage;
         _stages[index].gameObject.SetActive(true);
-        Debug.Log($"지금 스테이지 {index}");
-        Debug.Log($"x {_stages[index].respawnPoint.position.x}");
-        Debug.Log($"y {_stages[index].respawnPoint.position.y}");
+        //Debug.Log($"지금 스테이지 {index}");
+        //Debug.Log($"x {_stages[index].respawnPoint.position.x}");
+        //Debug.Log($"y {_stages[index].respawnPoint.position.y}");
         SpawnPos = new Vector2(_stages[index].respawnPoint.position.x, _stages[index].respawnPoint.position.y);
         stageTitle.text = _stages[index].stageName;
         ShowStageTitle();
-        Manager.Game.SetRespawnPoint(SpawnPos);
+        Manager.Game.SetRespawnPoint(SpawnPos, _stages[index]);
         Manager.Game.SpawnPlayer();
         var camTarget = cinemachine.Target;
         camTarget.TrackingTarget = Manager.Game.PlayerTransform;
