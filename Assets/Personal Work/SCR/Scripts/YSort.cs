@@ -6,7 +6,7 @@ public class YSort : MonoBehaviour
 
     void Awake()
     {
-        if (sr != null)
+        if (sr == null)
             sr = GetComponent<SpriteRenderer>();
     }
 
