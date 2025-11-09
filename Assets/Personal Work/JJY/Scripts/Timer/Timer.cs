@@ -115,8 +115,9 @@ public class Timer : MonoBehaviour
         lastStageTweenr.Kill();
     }
 
+    // 20초 타이머 멈추기
     private void OnTransitioning()
     {
-
+        tweener.Pause();
     }
 }
