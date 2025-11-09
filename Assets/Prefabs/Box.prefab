@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 217784252791447491}
   - component: {fileID: 3384075890444133154}
   - component: {fileID: 6963278860304796088}
+  - component: {fileID: 97594711132716805}
   m_Layer: 20
   m_Name: Box
   m_TagString: Box
@@ -172,8 +173,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -1869315837
-  m_SortingLayer: 0
+  m_SortingLayerID: 314901071
+  m_SortingLayer: 2
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300038, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -244,8 +245,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 500
-  m_LinearDamping: 10
+  m_Mass: 1
+  m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -333,3 +334,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.0642052, y: 1.1947784}
   m_EdgeRadius: 0
+--- !u!114 &97594711132716805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134449628129068913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c0f2a362d753145b742e78c363251d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CheckGround
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  checkRadius: 0.05
+  fallDelay: 0.06
+  fallDuration: 0.35
+  respawnPos: {x: 0, y: 0, z: 0}
