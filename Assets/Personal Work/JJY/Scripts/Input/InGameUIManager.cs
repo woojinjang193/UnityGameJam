@@ -1,8 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class OptionSettingManager : MonoBehaviour
+public class InGameUIManager : MonoBehaviour
 {
+    [Header("Buttons")]
+    [SerializeField] private Button newGameButton;
+
     [SerializeField] private GameObject[] settingPanels;
     private PlayerInput playerInput;
     private InputAction cancelAction;
@@ -16,11 +21,21 @@ public class OptionSettingManager : MonoBehaviour
     void OnEnable()
     {
         cancelAction.performed += OnCancel;
+        newGameButton.onClick.AddListener(NewGame);
     }
 
     void OnDisable()
     {
         cancelAction.performed -= OnCancel;
+        newGameButton.onClick.RemoveListener(NewGame);
+    }
+    public void OpenPanel()
+    {
+        GetComponent<PanelController>().OpenPanel();
+    }
+    public void ClosePanel()
+    {
+        GetComponent<PanelController>().ClosePanel();
     }
 
     private void OnCancel(InputAction.CallbackContext context)
@@ -29,8 +44,20 @@ public class OptionSettingManager : MonoBehaviour
         {
             if (go.activeSelf)
             {
-                go.SetActive(false);
+                go.GetComponent<PanelController>().ClosePanel();
+                // go.SetActive(false);
             }
         }
+    }
+    public void NewGame()
+    {
+        // GetComponent<PanelController>().ClosePanel();
+        SceneManager.LoadScene(1);
+    }
+    public void ExtiToTitle()
+    {
+        // GetComponent<PanelController>().ClosePanel();
+        SceneManager.LoadScene(0);
+        Manager.Game.InitLevel();
     }
 }

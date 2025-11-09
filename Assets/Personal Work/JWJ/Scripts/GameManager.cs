@@ -127,6 +127,11 @@ public class GameManager : Singleton<GameManager>
         CurStage++;
         _echos.Clear();
     }
+    public void InitLevel()
+    {
+        CurStage = 0;
+        _echos.Clear();
+    }
 
     public void SetRespawnPoint(Vector2 pos, Stage stage)
     {

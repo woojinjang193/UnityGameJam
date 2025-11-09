@@ -14,6 +14,7 @@ public class StartButton : MonoBehaviour
 
     private void OnButtonClicked()
     {
+        Manager.Game.LevelUp();
         SceneManager.LoadScene("map");
     }
 }
