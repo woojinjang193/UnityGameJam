@@ -2239,7 +2239,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1061204318}
   - component: {fileID: 1061204317}
-  - component: {fileID: 1061204316}
   - component: {fileID: 1061204315}
   m_Layer: 0
   m_Name: JustBananaCamera
@@ -2292,14 +2291,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!81 &1061204316
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061204314}
-  m_Enabled: 1
 --- !u!20 &1061204317
 Camera:
   m_ObjectHideFlags: 0
@@ -2377,6 +2368,7 @@ GameObject:
   - component: {fileID: 1184851449}
   - component: {fileID: 1184851448}
   - component: {fileID: 1184851447}
+  - component: {fileID: 1184851450}
   m_Layer: 5
   m_Name: MainMenuCanvas
   m_TagString: Untagged
@@ -2450,6 +2442,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1184851450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184851445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c816348ab455844a874e8eebc88d9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSetting
+  masterSlider: {fileID: 1558798263}
+  bgmSlider: {fileID: 383333261}
+  sfxSlider: {fileID: 95585533}
+  masterValueText: {fileID: 0}
+  bgmValueText: {fileID: 0}
+  sfxValueText: {fileID: 0}
 --- !u!1 &1310140652
 GameObject:
   m_ObjectHideFlags: 0
@@ -3414,7 +3424,6 @@ GameObject:
   - component: {fileID: 1820770975}
   - component: {fileID: 1820770974}
   - component: {fileID: 1820770976}
-  - component: {fileID: 1820770977}
   - component: {fileID: 1820770978}
   m_Layer: 0
   m_Name: AudioManager
@@ -3475,24 +3484,6 @@ MonoBehaviour:
   stage1to3: {fileID: 8300000, guid: 5ccafcfd55f8f8149b13388ce5e7299c, type: 3}
   stage4to7: {fileID: 8300000, guid: 7e90556d950ce9942ba9050dd07009f1, type: 3}
   stage8: {fileID: 8300000, guid: 20883ec812e426a4985eb4345f4a422c, type: 3}
---- !u!114 &1820770977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1820770973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c816348ab455844a874e8eebc88d9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AudioSetting
-  masterSlider: {fileID: 1558798263}
-  bgmSlider: {fileID: 383333261}
-  sfxSlider: {fileID: 95585533}
-  masterValueText: {fileID: 0}
-  bgmValueText: {fileID: 0}
-  sfxValueText: {fileID: 0}
 --- !u!114 &1820770978
 MonoBehaviour:
   m_ObjectHideFlags: 0
