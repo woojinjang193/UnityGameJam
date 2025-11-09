@@ -1574,6 +1574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RotateBanana
   banana: {fileID: 959769278}
+  fanfare: {fileID: 8300000, guid: 113d8ff07f9ba314dbf257a8b689cf4c, type: 3}
   rotateTime: 0.5
 --- !u!114 &689311792
 MonoBehaviour:
@@ -1680,6 +1681,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4ef80cec-37fc-4ccb-8c9c-899891a709fa
     m_ActionName: 'Player/ChargeHold[/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 610a8661-91d0-498d-9b8e-32dac059c8ed
+    m_ActionName: 'Player/Kill[/Keyboard/k]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI

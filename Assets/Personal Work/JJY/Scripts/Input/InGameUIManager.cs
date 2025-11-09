@@ -10,18 +10,21 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private Button settingButton;
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continueButton;
+    [SerializeField] private Button tutorialButton;
     [SerializeField] private Button settingSoundButton;
     [SerializeField] private Button exitButton;
     [SerializeField] private Button close1Button;
     [SerializeField] private Button close2Button;
+    [SerializeField] private Button close3Button;
 
     [Header("Tutorial UI")]
-    [SerializeField] private GameObject tutorialUI;
+    // [SerializeField] private GameObject tutorialUI;
 
     [SerializeField] private GameObject[] settingPanels;
     private PlayerInput playerInput;
     private InputAction cancelAction;
     private PanelController settingMenuPanelController;
+    private PanelController tutorialPanelController;
     private PanelController soundSettingPanelController;
 
 
@@ -29,23 +32,26 @@ public class InGameUIManager : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         cancelAction = playerInput.actions["Cancel"];
-        if (Manager.Game.CurStage == 1) tutorialUI.gameObject.SetActive(true);
-        else tutorialUI.gameObject.SetActive(false);
+        // if (Manager.Game.CurStage == 1) tutorialUI.gameObject.SetActive(true);
+        // else tutorialUI.gameObject.SetActive(false);
     }
 
     void OnEnable()
     {
         cancelAction.performed += OnCancel;
         settingMenuPanelController = settingPanels[0].GetComponent<PanelController>();
-        soundSettingPanelController = settingPanels[1].GetComponent<PanelController>();
+        tutorialPanelController = settingPanels[1].GetComponent<PanelController>();
+        soundSettingPanelController = settingPanels[2].GetComponent<PanelController>();
 
         settingButton.onClick.AddListener(OpenSettingMenuPanel);
         newGameButton.onClick.AddListener(NewGame);
         continueButton.onClick.AddListener(OnClickClosePanel);
+        tutorialButton.onClick.AddListener(OpentutorialgPanel);
         settingSoundButton.onClick.AddListener(OpenSoundSettingPanel);
         exitButton.onClick.AddListener(ExtiToTitle);
         close1Button.onClick.AddListener(OnClickClosePanel);
         close2Button.onClick.AddListener(OnClickClosePanel);
+        close3Button.onClick.AddListener(OnClickClosePanel);
     }
 
     void OnDisable()
@@ -55,15 +61,22 @@ public class InGameUIManager : MonoBehaviour
         settingButton.onClick.RemoveListener(OpenSettingMenuPanel);
         newGameButton.onClick.RemoveListener(NewGame);
         continueButton.onClick.RemoveListener(OnClickClosePanel);
+        tutorialButton.onClick.RemoveListener(OpentutorialgPanel);
         settingSoundButton.onClick.RemoveListener(OpenSoundSettingPanel);
         exitButton.onClick.RemoveListener(ExtiToTitle);
         close1Button.onClick.RemoveListener(OnClickClosePanel);
         close2Button.onClick.RemoveListener(OnClickClosePanel);
+        close3Button.onClick.RemoveListener(OnClickClosePanel);
     }
     public void OpenSettingMenuPanel()
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.clickSFX);
         settingMenuPanelController.OpenPanel();
+    }
+    public void OpentutorialgPanel()
+    {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.clickSFX);
+        tutorialPanelController.OpenPanel();
     }
     public void OpenSoundSettingPanel()
     {
@@ -79,6 +92,7 @@ public class InGameUIManager : MonoBehaviour
     public void ClosePanel()
     {
         settingMenuPanelController.ClosePanel();
+        tutorialPanelController.ClosePanel();
         soundSettingPanelController.ClosePanel();
     }
 
@@ -95,12 +109,12 @@ public class InGameUIManager : MonoBehaviour
     public void NewGame()
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.clickSFX);
-        SceneManager.LoadScene("Title");
+        SceneManager.LoadScene("InGame");
     }
     public void ExtiToTitle()
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.clickSFX);
-        SceneManager.LoadScene("InGame");
+        SceneManager.LoadScene("Title");
         Manager.Game.InitLevel();
     }
 }
