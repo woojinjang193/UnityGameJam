@@ -49,5 +49,8 @@ TagManager:
   - name: object
     uniqueID: 314901071
     locked: 0
+  - name: Mirror
+    uniqueID: 3806965311
+    locked: 0
   m_RenderingLayers:
   - Default

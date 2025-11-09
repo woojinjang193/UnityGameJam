@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BoxInteraction : MonoBehaviour
@@ -8,12 +9,14 @@ public class BoxInteraction : MonoBehaviour
     private SpriteRenderer _sr;
     private Color _color;
     private Collider2D _col;
+    private Rigidbody2D _rb;
 
     private void Awake()
     {
         _sr = GetComponent<SpriteRenderer>();
         _color = _sr.color;
         _col = GetComponent<Collider2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
     public void SetBox(bool isForPlayer, int ownerId)
     {
@@ -34,6 +37,20 @@ public class BoxInteraction : MonoBehaviour
         }
     }
 
+    public void PushBox()
+    {
+        StartCoroutine(Push());
+    }
+
+    private IEnumerator Push()
+    {
+        _rb.bodyType = RigidbodyType2D.Dynamic;
+        yield return new WaitForSeconds(0.5f);
+        _rb.linearVelocity = Vector2.zero;
+        _rb.angularVelocity = 0f;
+        _rb.bodyType = RigidbodyType2D.Kinematic;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var otherCol = collision.collider;
@@ -44,7 +61,7 @@ public class BoxInteraction : MonoBehaviour
             {
                 Physics2D.IgnoreCollision(_col, otherCol, true);
             }
-                
+
         }
         else
         {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
 
     private bool _isKeyPressed;
+    private bool _isPush = false;
 
     private bool _canMoveBox = false;
     private GameObject _box;
@@ -118,12 +120,25 @@ public class PlayerController : MonoBehaviour
             //Debug.Log($"[Player] 입력 기록: Time={Time.fixedTime}, Input={_inputVec}, Position={_rigid.position}");
         }
         Vector2 nextVec = _inputVec * _speed * Time.fixedDeltaTime;
-        _rigid.MovePosition(_rigid.position + nextVec);
+        if (!_isPush)
+            _rigid.MovePosition(_rigid.position + nextVec);
 
         if (_boxRb != null && _canMoveBox && _isKeyPressed)
         {
             _boxRb.MovePosition(_boxRb.position + nextVec);
         }
+    }
+
+    public void PushPlayer()
+    {
+        StartCoroutine(Push());
+    }
+
+    private IEnumerator Push()
+    {
+        _isPush = true;
+        yield return new WaitForSeconds(0.5f);
+        _isPush = false;
     }
 
     public void DiePlayer()
