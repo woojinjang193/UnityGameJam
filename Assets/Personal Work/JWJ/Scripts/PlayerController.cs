@@ -237,7 +237,10 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Fire"))
         {
+            _canMoveBox = false;
             _box = null;
+            _boxRb = null;
+            _faceLocked = false;
         }
         if (other.CompareTag("Rocket"))
         {
