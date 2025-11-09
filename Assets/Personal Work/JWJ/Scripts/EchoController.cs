@@ -23,11 +23,17 @@ public class EchoController : MonoBehaviour
     private bool _isKeyPressed;
     private Rigidbody2D _boxRb;
 
+    private string beforedic = "S";
+    private Animator animator;
+
+    private bool _isPushing => _boxRb != null && _isKeyPressed && _curInput.sqrMagnitude > 0f;
+
     private void Awake()
     {
         _sr = GetComponent<SpriteRenderer>();
         _rigid = GetComponent<Rigidbody2D>();
         _startColor = _sr.color;
+        animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -106,10 +112,29 @@ public class EchoController : MonoBehaviour
         Vector2 nextVec = _curInput * _speed * Time.fixedDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);
 
-        if (_boxRb != null && _isKeyPressed)
+        if (_isPushing)
         {
             _boxRb.MovePosition(_boxRb.position + nextVec);
         }
+
+        if (!_isPushing)
+        {
+            string dir = beforedic;
+            if (_curInput.x <= -0.5f) dir = "W";
+            else if (_curInput.x >= 0.5f) dir = "E";
+            else if (_curInput.y >= 0.5f) dir = "N";
+            else if (_curInput.y <= -0.5f) dir = "S";
+            beforedic = dir;
+        }
+
+        string statePrefix = (_curInput.magnitude > 0)
+            ? (_isPushing ? "Push" : "Walk")
+            : "Idle";
+
+        string target = $"{statePrefix}{beforedic}";
+        var st = animator.GetCurrentAnimatorStateInfo(0);
+        if (!st.IsName(target))
+            animator.Play(target);
     }
     public void SetInteractPressed(bool pressed)
     {
@@ -131,6 +156,7 @@ public class EchoController : MonoBehaviour
         {
             _speed = 7f;
             _boxRb = null;
+            animator.Play($"Idle{beforedic}");
         }
     }
 }

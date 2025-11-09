@@ -34,7 +34,10 @@ public class PlayerController : MonoBehaviour
     private GameObject _box;
     private Rigidbody2D _boxRb;
 
+    private bool _isPushing => _canMoveBox && _isKeyPressed && _boxRb != null && _inputVec.sqrMagnitude > 0f;
+
     private string beforedic = "S";
+
 
     private void Awake()
     {
@@ -76,18 +79,27 @@ public class PlayerController : MonoBehaviour
             Manager.Game.StartPlayer();
 
         }
-        string _directString = beforedic;
-        if (_inputVec.x == -1) _directString = "W";
-        else if (_inputVec.x == 1) _directString = "E";
-        else if (_inputVec.y == 1) _directString = "N";
-        else if (_inputVec.y == -1) _directString = "S";
 
-        beforedic = _directString;
-        string _moveState = "Idle";
-        _moveState = _inputVec.magnitude > 0 ? "Walk" : "Idle";
+        if (!_isPushing)
+        {
+            string dir = beforedic;
+            if (_inputVec.x <= -0.5f) dir = "W";
+            else if (_inputVec.x >= 0.5f) dir = "E";
+            else if (_inputVec.y >= 0.5f) dir = "N";
+            else if (_inputVec.y <= -0.5f) dir = "S";
+            beforedic = dir;
+        }
 
-        animator.Play($"{_moveState}{_directString}");
+        string statePrefix = (_inputVec.magnitude > 0)
+            ? (_isPushing ? "Push" : "Walk")
+            : "Idle";
+
+        string target = $"{statePrefix}{beforedic}";
+        var st = animator.GetCurrentAnimatorStateInfo(0);
+        if (!st.IsName(target))
+            animator.Play(target);
     }
+  
     public void OnInteract(InputValue value)
     {
         _isKeyPressed = value.isPressed;
@@ -120,7 +132,7 @@ public class PlayerController : MonoBehaviour
         Vector2 nextVec = _inputVec * _speed * Time.fixedDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);
 
-        if (_boxRb != null && _canMoveBox && _isKeyPressed)
+        if (_isPushing)
         {
             _boxRb.MovePosition(_boxRb.position + nextVec);
         }
@@ -166,6 +178,5 @@ public class PlayerController : MonoBehaviour
             _speed = 7f;
         }
     }
-
 
 }

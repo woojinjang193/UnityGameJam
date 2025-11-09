@@ -8,12 +8,28 @@ public class BoxInteraction : MonoBehaviour
     private SpriteRenderer _sr;
     private Color _color;
     private Collider2D _col;
-
     private void Awake()
     {
         _sr = GetComponent<SpriteRenderer>();
         _color = _sr.color;
         _col = GetComponent<Collider2D>();
+    }
+
+    private void Start()
+    {
+        var allBoxes = FindObjectsByType<BoxInteraction>(
+            FindObjectsInactive.Exclude,
+            FindObjectsSortMode.None
+        );
+
+        foreach (var box in allBoxes)
+        {
+            if (box == this) continue;
+            if (box._ownerId == _ownerId) continue;
+            var otherCol = box.GetComponent<Collider2D>();
+            if (otherCol != null)
+                Physics2D.IgnoreCollision(_col, otherCol, true);
+        }
     }
     public void SetBox(bool isForPlayer, int ownerId)
     {
