@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     private bool _canMoveBox = false;
     private GameObject _box;
     private Rigidbody2D _boxRb;
+    private bool _ending = false;
 
     //애니메이션 방향 잠금용
     private bool _faceLocked = false;
@@ -122,6 +123,10 @@ public class PlayerController : MonoBehaviour
     public void OnInteract(InputValue value)
     {
         _isKeyPressed = value.isPressed;
+        if (_ending)
+        {
+            // 게임 매니져에서 마지막 씬으로 이동하게 하기
+        }
 
         if (_isRecording)
         {
@@ -207,6 +212,10 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Fire"))
         {
             _box = null;
+        }
+        if (other.CompareTag("Rocket"))
+        {
+            _ending = true;
         }
     }
 

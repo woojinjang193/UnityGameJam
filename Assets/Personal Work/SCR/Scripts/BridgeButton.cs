@@ -21,7 +21,8 @@ public class BridgeButton : Gimmic
         OnButtonObj.SetActive(isOn);
         CreateBridgeObj.SetActive(isOn);
         OffButtonObj.SetActive(!isOn);
-        DeleteBridgeObj.SetActive(!isOn);
+        if (DeleteBridgeObj != null)
+            DeleteBridgeObj.SetActive(!isOn);
         OnGimmic?.Invoke(isOn);
     }
 
