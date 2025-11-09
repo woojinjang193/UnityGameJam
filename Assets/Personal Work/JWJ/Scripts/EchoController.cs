@@ -191,7 +191,15 @@ public class EchoController : MonoBehaviour
             _box.SetMovable(true);
         }
     }
-
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Fire"))
+        {
+            _box = null;
+            _boxRb = null;
+            _faceLocked = false;
+        }
+    }
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Box")) return;
