@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 5012040439179999187}
   - component: {fileID: 5769859418514350265}
   - component: {fileID: 217784252791447491}
+  - component: {fileID: 3384075890444133154}
   m_Layer: 20
   m_Name: Box
   m_TagString: Box
@@ -271,3 +272,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoxInteraction
   _playerOnly: 1
   _ownerId: 0
+--- !u!114 &3384075890444133154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134449628129068913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 309871095515255895}
   - component: {fileID: 7831457747416533890}
   - component: {fileID: 3645601437358816520}
+  - component: {fileID: -7332875256973951613}
   m_Layer: 7
   m_Name: Echo
   m_TagString: Player
@@ -238,6 +239,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EchoController
   _echoID: 0
   _speed: 7
+--- !u!114 &-7332875256973951613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3973551083749766263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!1 &4247971138333310393
 GameObject:
   m_ObjectHideFlags: 0
