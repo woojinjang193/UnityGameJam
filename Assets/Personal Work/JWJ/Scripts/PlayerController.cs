@@ -9,6 +9,7 @@ public struct InputRecord
     public float Time;
     public Vector2 Input;
     public Vector2 Position;
+    public bool Interact;
 }
 public class PlayerController : MonoBehaviour
 {
@@ -26,6 +27,17 @@ public class PlayerController : MonoBehaviour
     private float _recordStartTime;
     private Color _startColor;
     private SpriteRenderer _spriteRenderer;
+
+    private bool _isKeyPressed;
+
+    private bool _canMoveBox = false;
+    private GameObject _box;
+    private Rigidbody2D _boxRb;
+
+    private bool _isPushing => _canMoveBox && _isKeyPressed && _boxRb != null && _inputVec.sqrMagnitude > 0f;
+
+    private string beforedic = "S";
+
 
     private void Awake()
     {
@@ -59,20 +71,49 @@ public class PlayerController : MonoBehaviour
             {
                 Time = 0f,
                 Input = _inputVec,
-                Position = _rigid.position
+                Position = _rigid.position,
+                Interact = _isKeyPressed
             });
             _lastRecordedInput = _inputVec;
 
             Manager.Game.StartPlayer();
 
         }
-        if (_inputVec.x == -1) animator.SetInteger("Direction", 3);
-        else if (_inputVec.x == 1) animator.SetInteger("Direction", 2);
-        else if (_inputVec.y == 1) animator.SetInteger("Direction", 1);
-        else if (_inputVec.y == -1) animator.SetInteger("Direction", 0);
 
+        if (!_isPushing)
+        {
+            string dir = beforedic;
+            if (_inputVec.x <= -0.5f) dir = "W";
+            else if (_inputVec.x >= 0.5f) dir = "E";
+            else if (_inputVec.y >= 0.5f) dir = "N";
+            else if (_inputVec.y <= -0.5f) dir = "S";
+            beforedic = dir;
+        }
 
-        animator.SetBool("IsMoving", _inputVec.magnitude > 0);
+        string statePrefix = (_inputVec.magnitude > 0)
+            ? (_isPushing ? "Push" : "Walk")
+            : "Idle";
+
+        string target = $"{statePrefix}{beforedic}";
+        var st = animator.GetCurrentAnimatorStateInfo(0);
+        if (!st.IsName(target))
+            animator.Play(target);
+    }
+  
+    public void OnInteract(InputValue value)
+    {
+        _isKeyPressed = value.isPressed;
+
+        if (_isRecording)
+        {
+            _records.Add(new InputRecord
+            {
+                Time = Time.fixedTime - _recordStartTime,
+                Input = _inputVec,
+                Position = _rigid.position,
+                Interact = _isKeyPressed
+            });
+        }
     }
     private void FixedUpdate()
     {
@@ -82,13 +123,19 @@ public class PlayerController : MonoBehaviour
             {
                 Time = Time.fixedTime - _recordStartTime,
                 Input = _inputVec,
-                Position = _rigid.position
+                Position = _rigid.position,
+                Interact = _isKeyPressed
             });
             _lastRecordedInput = _inputVec;
             //Debug.Log($"[Player] 입력 기록: Time={Time.fixedTime}, Input={_inputVec}, Position={_rigid.position}");
         }
         Vector2 nextVec = _inputVec * _speed * Time.fixedDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);
+
+        if (_isPushing)
+        {
+            _boxRb.MovePosition(_boxRb.position + nextVec);
+        }
     }
 
     public void DiePlayer()
@@ -99,7 +146,8 @@ public class PlayerController : MonoBehaviour
             {
                 Time = Time.fixedTime - _recordStartTime,
                 Input = Vector2.zero,
-                Position = _rigid.position
+                Position = _rigid.position,
+                Interact = false
             });
         }
         _isRecording = false;
@@ -113,6 +161,9 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Box"))
         {
+            _canMoveBox = true;
+            _box = collision.gameObject;
+            _boxRb = collision.rigidbody;
             _speed = 3.5f;
         }
     }
@@ -121,7 +172,11 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Box"))
         {
+            _canMoveBox = false;
+            _box = null;
+            _boxRb = null;
             _speed = 7f;
         }
     }
+
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -13,14 +14,22 @@ public class GameManager : Singleton<GameManager>
 
     private GameObject _echo;
     private GameObject _player;
+    //private GameObject _curBox;
     public Transform PlayerTransform;
     private Vector2 _spawnPoint = Vector2.zero;
+
+    private GameObject _boxPrefab;
+    private readonly List<Vector2> _boxPosList = new();
+    private readonly List<BoxInteraction> _boxes = new();
 
     private List<EchoController> _echos = new List<EchoController>();
     private PlayerController _playerCon;
 
     public event Action OnPlayerDied;
     public event Action OnPlayerStart;
+
+    private bool _isBox = false;
+    private int _echoID = 0;
     protected override void Awake()
     {
         base.Awake();
@@ -28,6 +37,8 @@ public class GameManager : Singleton<GameManager>
         handle.Completed += OnEchoLoaded;
         var handle_player = Addressables.LoadAssetAsync<GameObject>("Player");
         handle_player.Completed += OnPlayerLoaded;
+        var handle_box = Addressables.LoadAssetAsync<GameObject>("Box");
+        handle_box.Completed += OnBoxLoaded;
         CurStage = 0;
     }
 
@@ -56,6 +67,18 @@ public class GameManager : Singleton<GameManager>
             Debug.LogError($"Player 로드 실패: {handle.OperationException}");
         }
     }
+    private void OnBoxLoaded(AsyncOperationHandle<GameObject> handle)
+    {
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            _boxPrefab = handle.Result;
+            Debug.Log($"Box 로드 완료");
+        }
+        else
+        {
+            Debug.LogError($"Box 로드 실패: {handle.OperationException}");
+        }
+    }
 
     //플레이어 사망시
     public void PlayerDieAndSave(List<InputRecord> records, GameObject player, int echoID, float recordStartTime)
@@ -69,6 +92,7 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator RespawnRotine(List<InputRecord> records, GameObject player, int id, float startTime)
     {
+        _echoID = id;
         yield return new WaitForSeconds(_spawnDelayTime);
 
         foreach (var ech in _echos)
@@ -78,12 +102,18 @@ public class GameManager : Singleton<GameManager>
 
         var echo = Instantiate(_echo, _spawnPoint, Quaternion.identity);
         var controller = echo.GetComponent<EchoController>();
-        controller.Init(records, id, startTime);
+        controller.Init(records, _echoID, startTime);
         _echos.Add(controller);
 
         player.transform.position = _spawnPoint;
         player.transform.rotation = Quaternion.identity;
         player.SetActive(true);
+
+        if (_isBox)
+        {
+            RepositionBoxs();
+            SpawnBoxes(false);
+        }
         //Debug.Log("플레이어, 에코 프리팹 소환");
     }
 
@@ -98,9 +128,24 @@ public class GameManager : Singleton<GameManager>
         _echos.Clear();
     }
 
-    public void SetRespawnPoint(Vector2 pos)
+    public void SetRespawnPoint(Vector2 pos, Stage stage)
     {
         _spawnPoint = pos;
+        _boxPosList.Clear();
+        _isBox = stage.IsBox;
+
+        if (_isBox && stage.BoxTransform != null)
+        {
+            foreach (var transform in stage.BoxTransform)
+            {
+                if (transform)
+                {
+                    _boxPosList.Add((Vector2)transform.position);
+                }
+            }
+            RepositionBoxs();
+            SpawnBoxes(true);
+        }
     }
     public void SpawnPlayer()
     {
@@ -113,4 +158,26 @@ public class GameManager : Singleton<GameManager>
     {
         _playerCon.DiePlayer();
     }
+
+    private void SpawnBoxes(bool isForPlayer)
+    {
+        for (int i = 0; i < _boxPosList.Count; i++)
+        {
+            var go = Instantiate(_boxPrefab, _boxPosList[i], Quaternion.identity);
+            var box = go.GetComponent<BoxInteraction>();
+            box.SetBox(isForPlayer, _echoID, _boxPosList[i]);
+            _boxes.Add(box);
+        }
+        BoxInteraction.InitCollisionAll();
+    }
+
+    private void RepositionBoxs()
+    {
+        for(int i = 0; i < _boxes.Count; i++)
+        {
+            var box = _boxes[i];
+            box.transform.position = box.SpawnPos;
+        }
+    }
+
 }
