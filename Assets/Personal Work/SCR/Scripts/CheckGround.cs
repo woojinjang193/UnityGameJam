@@ -1,6 +1,7 @@
 using System.Collections;
 using Cainos.PixelArtTopDown_Basic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CheckGround : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class CheckGround : MonoBehaviour
     public float fallDuration = 0.35f;    // 실제 떨어지는 연출 시간
 
     private bool isFalling = false;
+    private bool donotCheck = false;
     private SpriteRenderer sr;
     private PlayerController moveController; // 실제 이동 스크립트 넣어줄 예정
     private EchoController echoController;
@@ -26,6 +28,7 @@ public class CheckGround : MonoBehaviour
         {
             echoController = GetComponent<EchoController>();
         }
+        respawnPos = transform.position;
     }
 
     private void SetRespawnPos(Vector3 pos)
@@ -35,6 +38,7 @@ public class CheckGround : MonoBehaviour
 
     private void Update()
     {
+        if (donotCheck) return;
         if (isFalling) return;
 
         // 발 밑에 Ground 있는지 확인
@@ -44,6 +48,11 @@ public class CheckGround : MonoBehaviour
         {
             StartCoroutine(FallCheckRoutine());
         }
+    }
+
+    public void PushedObj()
+    {
+        StartCoroutine(DonotCheck());
     }
 
     private IEnumerator FallCheckRoutine()
@@ -94,18 +103,32 @@ public class CheckGround : MonoBehaviour
             yield return null;
         }
 
-        // 여기서 죽음/리스폰 처리
-        // 예: GameManager.Instance.RespawnPlayer();
-        // 또는 시작 위치로 이동 후 초기화
-        if(moveController != null) moveController.DiePlayer();
+        if (gameObject.CompareTag("Box"))
+        {
+            transform.position = respawnPos;
+            transform.localScale = new Vector3(1, 1, 1);
+            if (sr != null) sr.color = startColor;
+        }
+        else
+        {
+            if (moveController != null) moveController.DiePlayer();
 
-        // 데모용: 원상복구 + 시작 지점 텔레포트
-        //transform.position = respawnPos; // TODO: 리스폰 위치로 교체
-        //transform.localScale = new Vector3(1, 1, 1);
-        //if (sr != null) sr.color = startColor;
-        if (moveController != null) moveController.enabled = true;
-        if (echoController != null) echoController.enabled = true;
+            // 데모용: 원상복구 + 시작 지점 텔레포트
+            //transform.position = respawnPos; // TODO: 리스폰 위치로 교체
+            //transform.localScale = new Vector3(1, 1, 1);
+            //if (sr != null) sr.color = startColor;
+            if (moveController != null) moveController.enabled = true;
+            if (echoController != null) echoController.enabled = true;
+        }
+
 
         isFalling = false;
+    }
+
+    private IEnumerator DonotCheck()
+    {
+        donotCheck = true;
+        yield return new WaitForSeconds(0.5f);
+        donotCheck = false;
     }
 }

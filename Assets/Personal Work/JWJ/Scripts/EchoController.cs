@@ -25,9 +25,14 @@ public class EchoController : MonoBehaviour
 
     private string beforedic = "S";
     private Animator animator;
+    private BoxInteraction _box;
 
     private bool _isPushing => _boxRb != null && _isKeyPressed && _curInput.sqrMagnitude > 0f;
 
+    //방향 잠금
+    private bool _faceLocked = false;
+    private string _lockedDir = "S";
+    private bool _wasPushing = false;
     private void Awake()
     {
         _sr = GetComponent<SpriteRenderer>();
@@ -43,6 +48,10 @@ public class EchoController : MonoBehaviour
 
         _startColor.a = 0.3f;
         _sr.color = _startColor;
+
+        _faceLocked = false;
+        _lockedDir = "S";
+        _wasPushing = false;
     }
 
     private void OnDisable()
@@ -72,6 +81,11 @@ public class EchoController : MonoBehaviour
         _isKeyPressed = false;
         _startTime = recordStartTime;
         _boxRb = null;
+        _box = null;
+
+        _faceLocked = false;
+        _lockedDir = "S";
+        _wasPushing = false;
     }
     public void ResetToSpawn(Vector2 spawnPoint)
     {
@@ -82,11 +96,18 @@ public class EchoController : MonoBehaviour
         _isPlaying = false;
         _isKeyPressed = false;
         _boxRb = null;
+        _box = null;
+
+        _faceLocked = false;
+        _lockedDir = "S";
+        _wasPushing = false;
     }
 
     private void FixedUpdate()
     {
-        if(!_isPlaying)
+        _speed = _isPushing ? 3.5f : 7f;
+
+        if (!_isPlaying)
         {
             return;
         }
@@ -103,6 +124,7 @@ public class EchoController : MonoBehaviour
         while (_curInputIndex < _records.Count && elapsed >= _records[_curInputIndex].Time)
         {
             _curInput = _records[_curInputIndex].Input;
+
             _isKeyPressed = _records[_curInputIndex].Interact;
             _rigid.position = _records[_curInputIndex].Position;
             //Debug.Log($"[Echo {_echoID}] 입력 적용: Elapsed={elapsed}, RecordTime={_records[_curInputIndex].Time}, Input={_curInput}, Position={_rigid.position}");
@@ -127,35 +149,54 @@ public class EchoController : MonoBehaviour
             beforedic = dir;
         }
 
-        string statePrefix = (_curInput.magnitude > 0)
-            ? (_isPushing ? "Push" : "Walk")
-            : "Idle";
+        if (_isPushing && !_wasPushing)
+        {
+            _lockedDir = beforedic;
+            _faceLocked = true;
+        }
+        else if (!_isPushing && _wasPushing)
+        {
+            _faceLocked = false;
+        }
+        _wasPushing = _isPushing;
 
-        string target = $"{statePrefix}{beforedic}";
+        string dirForAnim = _faceLocked ? _lockedDir : beforedic;
+        string statePrefix = (_curInput.sqrMagnitude > 0f) ? "Walk" : "Idle";
+        string target = $"{statePrefix}{dirForAnim}";
         var st = animator.GetCurrentAnimatorStateInfo(0);
-        if (!st.IsName(target))
-            animator.Play(target);
+        if (!st.IsName(target)) animator.Play(target);
     }
     public void SetInteractPressed(bool pressed)
     {
         _isKeyPressed = pressed;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Box"))
+        if (!other.CompareTag("Box")) return;
+
+        var box = other.GetComponent<BoxInteraction>();
+        if (box == null) return;
+
+        // 자기 ID와 같은 박스만 밀 수 있음
+        if (_isKeyPressed && !box.IsPlayerOnly && box.OwnerId == _echoID)
         {
-            _speed = 3.5f;
-            _boxRb = collision.rigidbody;
+            _boxRb = other.attachedRigidbody;
+            _box = box;
+            _box.SetMovable(true);
         }
     }
 
-    void OnCollisionExit2D(Collision2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Box"))
+        if (!other.CompareTag("Box")) return;
+
+        if (!_isKeyPressed) //키 안누르고 있을 때만 놓기
         {
-            _speed = 7f;
+            _box.SetMovable(false);
             _boxRb = null;
+            _box = null;
+            _faceLocked = false;
             animator.Play($"Idle{beforedic}");
         }
     }
