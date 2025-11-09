@@ -95,6 +95,15 @@
                     "processors": "",
                     "interactions": "Hold(duration=3)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Kill",
+                    "type": "Button",
+                    "id": "610a8661-91d0-498d-9b8e-32dac059c8ed",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -491,6 +500,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ChargeHold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c5191742-a48d-46f9-988f-c1933a808959",
+                    "path": "<Keyboard>/k",
+                    "interactions": "Hold(duration=1)",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Kill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

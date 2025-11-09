@@ -21,6 +21,6 @@ public class TargetPoint : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         Manager.Game.LevelUp();
         //SceneManager.LoadScene("map");
-        SceneManager.LoadSceneAsync("map");
+        SceneManager.LoadSceneAsync("InGame");
     }
 }
