@@ -27,6 +27,7 @@ public class GameManager : Singleton<GameManager>
 
     public event Action OnPlayerDied;
     public event Action OnPlayerStart;
+    public event Action OnTransitioning;
 
     private bool _isBox = false;
     private int _echoID = 0;
@@ -187,6 +188,11 @@ public class GameManager : Singleton<GameManager>
             var box = _boxes[i];
             box.transform.position = box.SpawnPos;
         }
+    }
+
+    public void StageClear()
+    {
+        OnTransitioning?.Invoke();
     }
 
 }
