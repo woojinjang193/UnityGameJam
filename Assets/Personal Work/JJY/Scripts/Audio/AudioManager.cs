@@ -17,6 +17,9 @@ public class AudioManager : MonoBehaviour
     [Header("AudioSources")]
     public AudioSource titleBGM;
     public int sfxPoolSize = 10;
+    public AudioClip clickSFX;
+    public AudioClip spawnSFX;
+    public AudioClip deathSFX;
 
     private const string MASTER_PARAM = "MasterVolume";
     private const string BGM_PARAM = "BGMVolume";

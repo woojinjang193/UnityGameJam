@@ -19,6 +19,7 @@ public class PanelController : MonoBehaviour
     }
     public void OpenPanel()
     {
+        if (gameObject.activeSelf) return;
         currentTween.Kill(true);
         gameObject.SetActive(true);
 
