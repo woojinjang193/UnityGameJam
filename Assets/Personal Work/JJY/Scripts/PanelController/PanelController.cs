@@ -22,7 +22,7 @@ public class PanelController : MonoBehaviour
         if (gameObject.activeSelf) return;
         currentTween.Kill(true);
         gameObject.SetActive(true);
-
+        gameObject.SetActive(true);
         rect.localScale = Vector2.zero;
         currentTween = rect.DOScale(1f, duration)
         .SetEase(Ease.OutBack)

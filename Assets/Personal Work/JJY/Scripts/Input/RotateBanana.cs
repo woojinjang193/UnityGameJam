@@ -1,12 +1,14 @@
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.ParticleSystem;
 
 public class RotateBanana : MonoBehaviour
 {
     [SerializeField] Button banana;
     [SerializeField] AudioClip fanfare;
     [SerializeField] private float rotateTime;
+    [SerializeField] private ParticleSystem _particle;
     private RectTransform rectTransform;
     private Tweener tweener;
     private int rotateCount = 0;
@@ -45,6 +47,7 @@ public class RotateBanana : MonoBehaviour
     {
         if (rotateCount < 20) return;
         AudioManager.Instance.PlaySFX(fanfare);
+        _particle.Play();
         rotateCount = 0;
     }
 
