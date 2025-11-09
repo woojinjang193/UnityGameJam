@@ -5,14 +5,17 @@ using UnityEngine.UI;
 public class RotateBanana : MonoBehaviour
 {
     [SerializeField] Button banana;
-    private RectTransform rectTransform;
+    [SerializeField] AudioClip fanfare;
     [SerializeField] private float rotateTime;
+    private RectTransform rectTransform;
     private Tweener tweener;
+    private int rotateCount = 0;
 
     void Start()
     {
         rectTransform = banana.GetComponent<RectTransform>();
         RotateOnStart();
+        rotateCount = 0;
     }
 
     private void RotateOnStart()
@@ -26,6 +29,7 @@ public class RotateBanana : MonoBehaviour
     public void RotateOnClick()
     {
         tweener.Kill();
+        rotateCount++;
 
         rectTransform.DORotate(new Vector3(0, 0, 360), rotateTime, RotateMode.Fast)
             .SetEase(Ease.OutSine)
@@ -33,7 +37,15 @@ public class RotateBanana : MonoBehaviour
             .OnComplete(() =>
             {
                 RotateOnStart();
+                Fanfare();
             });
+    }
+
+    private void Fanfare()
+    {
+        if (rotateCount < 20) return;
+        AudioManager.Instance.PlaySFX(fanfare);
+        rotateCount = 0;
     }
 
 }

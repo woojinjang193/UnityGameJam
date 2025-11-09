@@ -37020,8 +37020,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemStackUI
   stackImage: {fileID: 575908698}
-  stackText: {fileID: 0}
   maxCount: 5
+  fillDuration: 0.2
 --- !u!1 &805724525
 GameObject:
   m_ObjectHideFlags: 0
