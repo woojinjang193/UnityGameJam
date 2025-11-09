@@ -30,7 +30,7 @@ public class ItemStackUI : MonoBehaviour
     }
     void Awake()
     {
-        if (Manager.Game.CurStage != 6) return;
+        if (Manager.Game.CurStage != 8) return;
         Debug.Log($"{Manager.Game}");
         Manager.Game.OnCoinCountChanged += HandleCoinCountChange;
         ItemCount = Manager.Game.Coin;
