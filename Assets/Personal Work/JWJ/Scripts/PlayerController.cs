@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnEnable()
     {
+        Manager.Game.OnTransitioning += OnTransitioning;
         _records.Clear();
         _isRecording = false;
         _isPlaying = false;
@@ -68,6 +69,15 @@ public class PlayerController : MonoBehaviour
         _faceLocked = false;
         _lockedDir = "S";
         _wasPushing = false;
+    }
+    private void OnDisable()
+    {
+        Manager.Game.OnTransitioning -= OnTransitioning;
+    }
+
+    private void OnTransitioning()
+    {
+        _isPlaying = true;
     }
     public void OnMove(InputValue value)
     {
