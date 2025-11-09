@@ -36,14 +36,4 @@ public class WoodStick : MonoBehaviour
         gameObject.tag = "Box";
         animator.Play("Idle");
     }
-
-    public void EchoStick()
-    {
-        foreach (SpriteRenderer sR in renderers)
-        {
-            Color es = sR.color;
-            es.a = 0.3f;
-            sR.color = es;
-        }
-    }
 }
