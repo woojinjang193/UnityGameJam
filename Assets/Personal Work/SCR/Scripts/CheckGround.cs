@@ -71,6 +71,7 @@ public class CheckGround : MonoBehaviour
 
     private IEnumerator FallRoutine()
     {
+        Debug.Log("떨어지는 루틴");
         isFalling = true;
         if (moveController != null) moveController.enabled = false; // 입력/이동 막기
         if (echoController != null) echoController.enabled = false; // 입력/이동 막기
@@ -118,7 +119,14 @@ public class CheckGround : MonoBehaviour
             //transform.localScale = new Vector3(1, 1, 1);
             //if (sr != null) sr.color = startColor;
             if (moveController != null) moveController.enabled = true;
-            if (echoController != null) echoController.enabled = true;
+            if (echoController != null)
+            {
+                echoController.enabled = true;
+                transform.position = respawnPos;
+                transform.localScale = new Vector3(1, 1, 1);
+                Debug.Log("에코");
+            }
+
         }
 
 
@@ -128,7 +136,10 @@ public class CheckGround : MonoBehaviour
     private IEnumerator DonotCheck()
     {
         donotCheck = true;
-        yield return new WaitForSeconds(0.5f);
+        if (echoController == null)
+            yield return new WaitForSeconds(1f);
+        else
+            yield return new WaitForSeconds(2f);
         donotCheck = false;
     }
 }

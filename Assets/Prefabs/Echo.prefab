@@ -97,10 +97,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 314901071
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: -9182177788924653191, guid: 96de57d2c493c56458fb7d60a158b7c2, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -250,3 +250,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YSort
+  sr: {fileID: 0}

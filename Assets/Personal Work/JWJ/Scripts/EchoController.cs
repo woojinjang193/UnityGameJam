@@ -45,7 +45,6 @@ public class EchoController : MonoBehaviour
     {
         Manager.Game.OnPlayerStart += OnPlayerStart;
         Manager.Game.OnPlayerDied += OnPlayerDied;
-
         _startColor.a = 0.3f;
         _sr.color = _startColor;
 
@@ -63,12 +62,20 @@ public class EchoController : MonoBehaviour
     {
         _startTime = Time.fixedTime;
         _isPlaying = true;
+
+        _startColor.a = 0.3f;
+        _sr.color = _startColor;
+
+        _faceLocked = false;
+        _lockedDir = "S";
+        _wasPushing = false;
     }
     private void OnPlayerDied()
     {
         _curInputIndex = 0;
         _curInput = Vector2.zero;
     }
+
     public void Init(List<InputRecord> record, int id, float recordStartTime)
     {
         _echoID = id;
@@ -145,7 +152,7 @@ public class EchoController : MonoBehaviour
             {
                 _box.SetMovable(false);
             }
-            
+
             string dir = beforedic;
             if (_curInput.x <= -0.5f) dir = "W";
             else if (_curInput.x >= 0.5f) dir = "E";
@@ -206,11 +213,11 @@ public class EchoController : MonoBehaviour
 
         if (!_isKeyPressed) //키 안누르고 있을 때만 놓기
         {
-            if(_box != null)
+            if (_box != null)
             {
                 _box.SetMovable(false);
             }
-            
+
             _boxRb = null;
             _box = null;
             _faceLocked = false;
