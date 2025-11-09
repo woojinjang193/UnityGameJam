@@ -123,6 +123,20 @@ public class PlayerController : MonoBehaviour
     public void OnInteract(InputValue value)
     {
         _isKeyPressed = value.isPressed;
+
+        if (!value.isPressed)
+        {
+            if (_box != null)
+            {
+                _canMoveBox = false;
+
+                _boxRb = null;
+                _faceLocked = false;
+                var box = _box.GetComponent<BoxInteraction>();
+                box.SetMovable(false);
+                _box = null;
+            }
+        }
         if (_ending)
         {
             // 게임 매니져에서 마지막 씬으로 이동하게 하기
