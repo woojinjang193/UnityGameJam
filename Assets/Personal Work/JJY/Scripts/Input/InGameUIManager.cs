@@ -92,6 +92,7 @@ public class InGameUIManager : MonoBehaviour
     public void ClosePanel()
     {
         settingMenuPanelController.ClosePanel();
+        tutorialPanelController.ClosePanel();
         soundSettingPanelController.ClosePanel();
     }
 
