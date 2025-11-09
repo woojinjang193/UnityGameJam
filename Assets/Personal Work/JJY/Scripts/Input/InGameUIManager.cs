@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InGameUIManager : MonoBehaviour
 {
-    [SerializeField] private Button optionButton;
-    [SerializeField] private GameObject optionsPanel;
+    [Header("Buttons")]
+    [SerializeField] private Button newGameButton;
+
+    [SerializeField] private GameObject[] settingPanels;
     private PlayerInput playerInput;
     private InputAction cancelAction;
 
@@ -13,34 +16,48 @@ public class InGameUIManager : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         cancelAction = playerInput.actions["Cancel"];
-        optionButton.onClick.AddListener(OpenSettings);
     }
 
     void OnEnable()
     {
         cancelAction.performed += OnCancel;
+        newGameButton.onClick.AddListener(NewGame);
     }
 
     void OnDisable()
     {
         cancelAction.performed -= OnCancel;
+        newGameButton.onClick.RemoveListener(NewGame);
+    }
+    public void OpenPanel()
+    {
+        GetComponent<PanelController>().OpenPanel();
+    }
+    public void ClosePanel()
+    {
+        GetComponent<PanelController>().ClosePanel();
     }
 
     private void OnCancel(InputAction.CallbackContext context)
     {
-        if (optionsPanel.activeSelf)
+        foreach (GameObject go in settingPanels)
         {
-            CloseSettings();
+            if (go.activeSelf)
+            {
+                go.GetComponent<PanelController>().ClosePanel();
+                // go.SetActive(false);
+            }
         }
     }
-
-    public void OpenSettings()
+    public void NewGame()
     {
-        optionsPanel.SetActive(true);
+        // GetComponent<PanelController>().ClosePanel();
+        SceneManager.LoadScene(1);
     }
-
-    public void CloseSettings()
+    public void ExtiToTitle()
     {
-        optionsPanel.SetActive(false);
+        // GetComponent<PanelController>().ClosePanel();
+        SceneManager.LoadScene(0);
+        Manager.Game.InitLevel();
     }
 }
