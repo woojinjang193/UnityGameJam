@@ -274,11 +274,13 @@ public class GameManager : Singleton<GameManager>
         {
             var fireH = _firesH[i];
             fireH.transform.position = fireH.SpawnPos;
+            fireH.gameObject.GetComponent<WoodStick>().ResetFire();
         }
         for (int i = 0; i < _firesV.Count; i++)
         {
             var fireV = _firesV[i];
             fireV.transform.position = fireV.SpawnPos;
+            fireV.gameObject.GetComponent<WoodStick>().ResetFire();
         }
     }
     
