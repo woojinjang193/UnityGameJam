@@ -6,12 +6,12 @@ using UnityEngine.Tilemaps;
 public class TilemapYSort : MonoBehaviour
 {
     private Tilemap tilemap;
-    private TilemapRenderer renderer;
+    private TilemapRenderer _renderer;
 
     void Awake()
     {
         tilemap = GetComponent<Tilemap>();
-        renderer = GetComponent<TilemapRenderer>();
+        _renderer = GetComponent<TilemapRenderer>();
     }
 
     void LateUpdate()
@@ -24,7 +24,7 @@ public class TilemapYSort : MonoBehaviour
             Vector3 bottomWorldPos = tilemap.CellToWorld(bottomCell.Value);
 
             // 그 위치의 Y값 기준으로 sortingOrder 계산
-            renderer.sortingOrder = Mathf.RoundToInt(-bottomWorldPos.y * 100);
+            _renderer.sortingOrder = Mathf.RoundToInt(-bottomWorldPos.y * 100);
         }
     }
 
