@@ -44667,7 +44667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &898705203
 Transform:
   m_ObjectHideFlags: 0
@@ -64592,11 +64592,12 @@ MonoBehaviour:
   settingButton: {fileID: 14007760}
   newGameButton: {fileID: 2138881322}
   continueButton: {fileID: 1068445331}
+  tutorialButton: {fileID: 0}
   settingSoundButton: {fileID: 1502424403}
   exitButton: {fileID: 82985076}
   close1Button: {fileID: 1839821726}
   close2Button: {fileID: 647376514}
-  tutorialUI: {fileID: 8377834}
+  close3Button: {fileID: 0}
   settingPanels:
   - {fileID: 1373119742}
   - {fileID: 1166437412}
@@ -69232,7 +69233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1665303535
 Transform:
   m_ObjectHideFlags: 0
