@@ -658,7 +658,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 314901071
   m_SortingLayer: 2
-  m_SortingOrder: -200
+  m_SortingOrder: -32
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -18160,8 +18160,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c59c4791fb84d145906e3a9c5374766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InGameUIManager
-  optionButton: {fileID: 1481758518}
-  optionsPanel: {fileID: 442924793}
+  settingButton: {fileID: 0}
+  newGameButton: {fileID: 0}
+  continueButton: {fileID: 0}
+  settingSoundButton: {fileID: 0}
+  exitButton: {fileID: 0}
+  close1Button: {fileID: 0}
+  close2Button: {fileID: 0}
+  tutorialUI: {fileID: 0}
+  settingPanels: []
 --- !u!114 &460079141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38611,6 +38618,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7832002416735997846, guid: 7877619dbca19a44fb2e3690d2dd3eb5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2160073965467755105, guid: 7877619dbca19a44fb2e3690d2dd3eb5, type: 3}
@@ -44907,7 +44918,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 314901071
   m_SortingLayer: 2
-  m_SortingOrder: -400
+  m_SortingOrder: -232
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -62401,7 +62412,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 1.28}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2.56, y: 2.56}
     newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
@@ -77924,6 +77935,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
+    - target: {fileID: 8134449628129068913, guid: 76b15449a1091f34591f231f97242019, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -88676,7 +88691,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 314901071
   m_SortingLayer: 2
-  m_SortingOrder: -300
+  m_SortingOrder: -132
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -99872,7 +99887,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2142700606
 MonoBehaviour:
   m_ObjectHideFlags: 0

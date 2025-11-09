@@ -17,8 +17,10 @@ public class TargetPoint : MonoBehaviour
 
     private IEnumerator GoNextStage()
     {
+        Manager.Game.BeginTransition(); // 씬넘어갈때 코루틴 차단
         yield return new WaitForSeconds(1.5f);
         Manager.Game.LevelUp();
-        SceneManager.LoadScene("map");
+        //SceneManager.LoadScene("map");
+        SceneManager.LoadSceneAsync("map");
     }
 }

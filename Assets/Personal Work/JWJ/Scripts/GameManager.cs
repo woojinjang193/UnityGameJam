@@ -30,6 +30,8 @@ public class GameManager : Singleton<GameManager>
 
     private bool _isBox = false;
     private int _echoID = 0;
+
+    private bool _isTransitioning = false;
     protected override void Awake()
     {
         base.Awake();
@@ -80,9 +82,29 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void BeginTransition()
+    {
+        _isTransitioning = true;
+        StopAllCoroutines(); // 진행 중 리스폰 중단
+    }
+    public void EndTransition()
+    {
+        _isTransitioning = false;
+    }
+    public void StageReady() //새씬에서 호출
+    {
+        if (_isTransitioning)
+        {
+            EndTransition();
+            SpawnPlayer();
+        }
+    }
     //플레이어 사망시
     public void PlayerDieAndSave(List<InputRecord> records, GameObject player, int echoID, float recordStartTime)
     {
+        if (_isTransitioning) return;
+        if (player == null) return;
+
         player.SetActive(false);
         //Debug.Log("플레이어 사망");
         OnPlayerDied?.Invoke(); //플레이어 죽음 이벤트 발생
@@ -93,7 +115,10 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator RespawnRotine(List<InputRecord> records, GameObject player, int id, float startTime)
     {
         _echoID = id;
+
+        if (_isTransitioning || player == null) yield break;
         yield return new WaitForSeconds(_spawnDelayTime);
+        if (_isTransitioning || player == null || _echo == null) yield break;
 
         foreach (var ech in _echos)
         {
@@ -105,6 +130,7 @@ public class GameManager : Singleton<GameManager>
         controller.Init(records, _echoID, startTime);
         _echos.Add(controller);
 
+        if (player == null) yield break;
         player.transform.position = _spawnPoint;
         player.transform.rotation = Quaternion.identity;
         player.SetActive(true);
@@ -168,25 +194,53 @@ public class GameManager : Singleton<GameManager>
         AudioManager.Instance.PlaySFX(AudioManager.Instance.deathSFX);
     }
 
+    //private void SpawnBoxes(bool isForPlayer)
+    //{
+    //    for (int i = 0; i < _boxPosList.Count; i++)
+    //    {
+    //        var go = Instantiate(_boxPrefab, _boxPosList[i], Quaternion.identity);
+    //        var box = go.GetComponent<BoxInteraction>();
+    //        box.SetBox(isForPlayer, _echoID, _boxPosList[i]);
+    //        _boxes.Add(box);
+    //    }
+    //    BoxInteraction.InitCollisionAll();
+    //}
+    //
+    //private void RepositionBoxs()
+    //{
+    //    for(int i = 0; i < _boxes.Count; i++)
+    //    {
+    //        var box = _boxes[i];
+    //        box.transform.position = box.SpawnPos;
+    //    }
+    //}
     private void SpawnBoxes(bool isForPlayer)
     {
+        if (_boxPrefab == null) return;
         for (int i = 0; i < _boxPosList.Count; i++)
         {
             var go = Instantiate(_boxPrefab, _boxPosList[i], Quaternion.identity);
             var box = go.GetComponent<BoxInteraction>();
-            box.SetBox(isForPlayer, _echoID, _boxPosList[i]);
-            _boxes.Add(box);
+            if (box != null)
+            {
+                box.SetBox(isForPlayer, _echoID, _boxPosList[i]);
+                _boxes.Add(box);
+            }
         }
         BoxInteraction.InitCollisionAll();
     }
-
     private void RepositionBoxs()
     {
-        for(int i = 0; i < _boxes.Count; i++)
+        for (int i = 0; i < _boxes.Count; i++)
         {
-            var box = _boxes[i];
-            box.transform.position = box.SpawnPos;
+            if (_boxes[i] != null)
+            {
+                _boxes[i].transform.position = _boxes[i].SpawnPos;
+            }
         }
+            
     }
+
+    
 
 }
