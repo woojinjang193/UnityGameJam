@@ -26,4 +26,12 @@ public class WoodStick : MonoBehaviour
             animator.Play("FireOn");
         }
     }
+
+    public void ResetFire()
+    {
+        normalStick.SetActive(true);
+        fireStick.SetActive(false);
+        gameObject.tag = "Box";
+        animator.Play("Idle");
+    }
 }
