@@ -111,6 +111,7 @@ public class GameManager : Singleton<GameManager>
 
         if (_isBox)
         {
+            RepositionBoxs();
             SpawnBoxes(false);
         }
         //Debug.Log("플레이어, 에코 프리팹 소환");
@@ -167,6 +168,7 @@ public class GameManager : Singleton<GameManager>
             box.SetBox(isForPlayer, _echoID, _boxPosList[i]);
             _boxes.Add(box);
         }
+        BoxInteraction.InitCollisionAll();
     }
 
     private void RepositionBoxs()

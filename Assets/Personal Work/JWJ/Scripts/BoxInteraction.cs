@@ -17,24 +17,6 @@ public class BoxInteraction : MonoBehaviour
         _col = GetComponent<Collider2D>();
     }
 
-    private void Start()
-    {
-        var allBoxes = FindObjectsByType<BoxInteraction>(
-            FindObjectsInactive.Exclude,
-            FindObjectsSortMode.None
-        );
-
-        foreach (var box in allBoxes)
-        {
-            if (box == this) continue;
-
-            var otherCol = box.GetComponent<Collider2D>();
-            if (otherCol == null) continue;
-
-            bool ignore = (box._ownerId != _ownerId);
-            Physics2D.IgnoreCollision(_col, otherCol, ignore);
-        }
-    }
     public void SetBox(bool isForPlayer, int ownerId, Vector2 spawnPos)
     {
         if (isForPlayer)
@@ -52,38 +34,46 @@ public class BoxInteraction : MonoBehaviour
             _color.a = 0.3f;
             _sr.color = _color;
             _spawnPos = spawnPos;
-
         }
     }
+    public static void InitCollisionAll()
+    {
+        var allBoxes = FindObjectsByType<BoxInteraction>(
+            FindObjectsInactive.Exclude,
+            FindObjectsSortMode.None
+        );
+
+        foreach (var a in allBoxes)
+        {
+            foreach (var b in allBoxes)
+            {
+                if (a == b) continue;
+                bool ignore = (a._ownerId != b._ownerId);
+                Physics2D.IgnoreCollision(a._col, b._col, ignore);
+            }
+        }
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var otherCol = collision.collider;
 
+        // 박스끼리 충돌은 무시
+        if (otherCol.GetComponent<BoxInteraction>() != null)
+            return;
+
         if (_playerOnly)
         {
-            if (!otherCol.TryGetComponent<PlayerController>(out var player))
-            {
+            if (!otherCol.TryGetComponent<PlayerController>(out _))
                 Physics2D.IgnoreCollision(_col, otherCol, true);
-            }
-                
         }
         else
         {
-            var echo = otherCol.GetComponent<EchoController>();
-            if (echo == null)
-            {
+            if (!otherCol.TryGetComponent<EchoController>(out var echo) || echo.EchoID != _ownerId)
                 Physics2D.IgnoreCollision(_col, otherCol, true);
-                return;
-            }
-
-            int echoId = echo.EchoID;
-
-            if (echoId != _ownerId)
-            {
-                Physics2D.IgnoreCollision(_col, otherCol, true);
-            }
         }
     }
+
 
 }
