@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     private GameObject _box;
     private Rigidbody2D _boxRb;
 
+    private string beforedic = "S";
+
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
@@ -74,13 +76,17 @@ public class PlayerController : MonoBehaviour
             Manager.Game.StartPlayer();
 
         }
-        if (_inputVec.x == -1) animator.SetInteger("Direction", 3);
-        else if (_inputVec.x == 1) animator.SetInteger("Direction", 2);
-        else if (_inputVec.y == 1) animator.SetInteger("Direction", 1);
-        else if (_inputVec.y == -1) animator.SetInteger("Direction", 0);
+        string _directString = beforedic;
+        if (_inputVec.x == -1) _directString = "W";
+        else if (_inputVec.x == 1) _directString = "E";
+        else if (_inputVec.y == 1) _directString = "N";
+        else if (_inputVec.y == -1) _directString = "S";
 
+        beforedic = _directString;
+        string _moveState = "Idle";
+        _moveState = _inputVec.magnitude > 0 ? "Walk" : "Idle";
 
-        animator.SetBool("IsMoving", _inputVec.magnitude > 0);
+        animator.Play($"{_moveState}{_directString}");
     }
     public void OnInteract(InputValue value)
     {
@@ -161,5 +167,5 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
+
 }

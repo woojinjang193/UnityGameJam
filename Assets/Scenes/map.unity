@@ -20506,7 +20506,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &460079140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20548,7 +20548,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultActionMap: 272f6d14-89ba-496f-b7ff-215263d3219f
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!4 &460079142
