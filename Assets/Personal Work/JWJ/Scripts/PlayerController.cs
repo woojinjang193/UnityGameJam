@@ -34,6 +34,11 @@ public class PlayerController : MonoBehaviour
     private GameObject _box;
     private Rigidbody2D _boxRb;
 
+    private bool _isPushing => _canMoveBox && _isKeyPressed && _boxRb != null && _inputVec.sqrMagnitude > 0f;
+
+    private string beforedic = "S";
+
+
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
@@ -74,14 +79,27 @@ public class PlayerController : MonoBehaviour
             Manager.Game.StartPlayer();
 
         }
-        if (_inputVec.x == -1) animator.SetInteger("Direction", 3);
-        else if (_inputVec.x == 1) animator.SetInteger("Direction", 2);
-        else if (_inputVec.y == 1) animator.SetInteger("Direction", 1);
-        else if (_inputVec.y == -1) animator.SetInteger("Direction", 0);
 
+        if (!_isPushing)
+        {
+            string dir = beforedic;
+            if (_inputVec.x <= -0.5f) dir = "W";
+            else if (_inputVec.x >= 0.5f) dir = "E";
+            else if (_inputVec.y >= 0.5f) dir = "N";
+            else if (_inputVec.y <= -0.5f) dir = "S";
+            beforedic = dir;
+        }
 
-        animator.SetBool("IsMoving", _inputVec.magnitude > 0);
+        string statePrefix = (_inputVec.magnitude > 0)
+            ? (_isPushing ? "Push" : "Walk")
+            : "Idle";
+
+        string target = $"{statePrefix}{beforedic}";
+        var st = animator.GetCurrentAnimatorStateInfo(0);
+        if (!st.IsName(target))
+            animator.Play(target);
     }
+  
     public void OnInteract(InputValue value)
     {
         _isKeyPressed = value.isPressed;
@@ -114,7 +132,7 @@ public class PlayerController : MonoBehaviour
         Vector2 nextVec = _inputVec * _speed * Time.fixedDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);
 
-        if (_boxRb != null && _canMoveBox && _isKeyPressed)
+        if (_isPushing)
         {
             _boxRb.MovePosition(_boxRb.position + nextVec);
         }
@@ -161,5 +179,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
 }

@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 5012040439179999187}
   - component: {fileID: 5769859418514350265}
   - component: {fileID: 217784252791447491}
+  - component: {fileID: 3384075890444133154}
   m_Layer: 20
   m_Name: Box
   m_TagString: Box
@@ -119,7 +120,7 @@ Transform:
   m_GameObject: {fileID: 8134449628129068913}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: -5, z: 0}
+  m_LocalPosition: {x: 3.9999998, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -271,3 +272,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoxInteraction
   _playerOnly: 1
   _ownerId: 0
+--- !u!114 &3384075890444133154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8134449628129068913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort

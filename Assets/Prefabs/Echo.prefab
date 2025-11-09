@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 309871095515255895}
   - component: {fileID: 7831457747416533890}
   - component: {fileID: 3645601437358816520}
+  - component: {fileID: -7332875256973951613}
   m_Layer: 7
   m_Name: Echo
   m_TagString: Player
@@ -148,7 +149,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 7.94, y: 10.69}
+    oldSize: {x: 8, y: 10.8}
     newSize: {x: 1, y: 1.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
@@ -193,7 +194,7 @@ Animator:
   m_GameObject: {fileID: 3973551083749766263}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7209e23a70340ac4f834c969de97a5a1, type: 2}
+  m_Controller: {fileID: 9100000, guid: a69a964caffd9964f96f7faa5450798b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -238,6 +239,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EchoController
   _echoID: 0
   _speed: 7
+--- !u!114 &-7332875256973951613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3973551083749766263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!1 &4247971138333310393
 GameObject:
   m_ObjectHideFlags: 0
