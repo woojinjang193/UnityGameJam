@@ -5,33 +5,39 @@ using UnityEngine.UI;
 
 public class TitleUIManager : MonoBehaviour
 {
-    [SerializeField] private Button settingButton1;
-    [SerializeField] private Button settingButton2;
+    [SerializeField] private Button howToButton;
+    [SerializeField] private Button settingButton;
     [SerializeField] private Button closeSettingButton;
+    [SerializeField] private Button closeHowToButton;
+    [SerializeField] private GameObject howToPanel;
     [SerializeField] private GameObject settingsPanel;
-    private PanelController panelController;
+    private PanelController settingpanelController;
+    private PanelController howTopanelController;
     private PlayerInput playerInput;
     private InputAction cancelAction;
 
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-        panelController = settingsPanel.GetComponent<PanelController>();
+        settingpanelController = settingsPanel.GetComponent<PanelController>();
+        howTopanelController = howToPanel.GetComponent<PanelController>();
         cancelAction = playerInput.actions["Cancel"];
-        settingButton1.onClick.AddListener(OpenSettings);
-        settingButton2.onClick.AddListener(OpenSettings);
+        howToButton.onClick.AddListener(OpenHowToPlay);
+        settingButton.onClick.AddListener(OpenSettings);
     }
 
     void OnEnable()
     {
         cancelAction.performed += OnCancel;
-        closeSettingButton.onClick.AddListener(OnClickClosePanel);
+        closeSettingButton.onClick.AddListener(OnClickCloseSettingPanel);
+        closeHowToButton.onClick.AddListener(OnClickCloseHowToPanel);
     }
 
     void OnDisable()
     {
         cancelAction.performed -= OnCancel;
-        closeSettingButton.onClick.RemoveListener(OnClickClosePanel);
+        closeSettingButton.onClick.RemoveListener(OnClickCloseSettingPanel);
+        closeHowToButton.onClick.RemoveListener(OnClickCloseHowToPanel);
     }
 
     private void OnCancel(InputAction.CallbackContext context)
@@ -40,21 +46,39 @@ public class TitleUIManager : MonoBehaviour
         {
             CloseSettings();
         }
+        if (howToPanel.activeSelf)
+        {
+            CloseHowTo();
+        }
     }
 
     public void OpenSettings()
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.clickSFX);
-        panelController.OpenPanel();
+        settingpanelController.OpenPanel();
+    }
+    public void OpenHowToPlay()
+    {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.clickSFX);
+        howTopanelController.OpenPanel();
     }
 
-    private void OnClickClosePanel()
+    private void OnClickCloseSettingPanel()
     {
         AudioManager.Instance.PlaySFX(AudioManager.Instance.clickSFX);
         CloseSettings();
     }
+    private void OnClickCloseHowToPanel()
+    {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.clickSFX);
+        CloseHowTo();
+    }
     public void CloseSettings()
     {
-        panelController.ClosePanel();
+        settingpanelController.ClosePanel();
+    }
+    public void CloseHowTo()
+    {
+        howTopanelController.ClosePanel();
     }
 }
