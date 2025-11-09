@@ -182,7 +182,7 @@ public class GameManager : Singleton<GameManager>
 
     private void RepositionBoxs()
     {
-        for(int i = 0; i < _boxes.Count; i++)
+        for (int i = 0; i < _boxes.Count; i++)
         {
             var box = _boxes[i];
             box.transform.position = box.SpawnPos;
