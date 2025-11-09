@@ -348,7 +348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CheckGround
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   checkRadius: 0.05
   fallDelay: 0.06
   fallDuration: 0.35

@@ -8,8 +8,4 @@ public class Stage : MonoBehaviour
     [SerializeField] public bool IsBox;
     [SerializeField] public Transform[] BoxTransform;
 
-    private void Start()
-    {
-        Manager.Game.StageReady();
-    }
 }
