@@ -29,6 +29,10 @@ public class EchoController : MonoBehaviour
 
     private bool _isPushing => _boxRb != null && _isKeyPressed && _curInput.sqrMagnitude > 0f;
 
+    //방향 잠금
+    private bool _faceLocked = false;
+    private string _lockedDir = "S";
+    private bool _wasPushing = false;
     private void Awake()
     {
         _sr = GetComponent<SpriteRenderer>();
@@ -44,6 +48,10 @@ public class EchoController : MonoBehaviour
 
         _startColor.a = 0.3f;
         _sr.color = _startColor;
+
+        _faceLocked = false;
+        _lockedDir = "S";
+        _wasPushing = false;
     }
 
     private void OnDisable()
@@ -74,6 +82,10 @@ public class EchoController : MonoBehaviour
         _startTime = recordStartTime;
         _boxRb = null;
         _box = null;
+
+        _faceLocked = false;
+        _lockedDir = "S";
+        _wasPushing = false;
     }
     public void ResetToSpawn(Vector2 spawnPoint)
     {
@@ -85,6 +97,10 @@ public class EchoController : MonoBehaviour
         _isKeyPressed = false;
         _boxRb = null;
         _box = null;
+
+        _faceLocked = false;
+        _lockedDir = "S";
+        _wasPushing = false;
     }
 
     private void FixedUpdate()
@@ -133,14 +149,22 @@ public class EchoController : MonoBehaviour
             beforedic = dir;
         }
 
-        string statePrefix = (_curInput.magnitude > 0)
-            ? (_isPushing ? "Push" : "Walk")
-            : "Idle";
+        if (_isPushing && !_wasPushing)
+        {
+            _lockedDir = beforedic;
+            _faceLocked = true;
+        }
+        else if (!_isPushing && _wasPushing)
+        {
+            _faceLocked = false;
+        }
+        _wasPushing = _isPushing;
 
-        string target = $"{statePrefix}{beforedic}";
+        string dirForAnim = _faceLocked ? _lockedDir : beforedic;
+        string statePrefix = (_curInput.sqrMagnitude > 0f) ? "Walk" : "Idle";
+        string target = $"{statePrefix}{dirForAnim}";
         var st = animator.GetCurrentAnimatorStateInfo(0);
-        if (!st.IsName(target))
-            animator.Play(target);
+        if (!st.IsName(target)) animator.Play(target);
     }
     public void SetInteractPressed(bool pressed)
     {

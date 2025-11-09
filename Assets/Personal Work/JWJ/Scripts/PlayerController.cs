@@ -34,6 +34,11 @@ public class PlayerController : MonoBehaviour
     private GameObject _box;
     private Rigidbody2D _boxRb;
 
+    //애니메이션 방향 잠금용
+    private bool _faceLocked = false;
+    private string _lockedDir = "S";
+    private bool _wasPushing = false;
+
     private bool _isPushing => _canMoveBox && _isKeyPressed && _boxRb != null && _inputVec.sqrMagnitude > 0f;
 
     private string beforedic = "S";
@@ -56,6 +61,10 @@ public class PlayerController : MonoBehaviour
         _startColor.a = 1;
         _spriteRenderer.color = _startColor;
         transform.localScale = new Vector3(1, 1, 1);
+
+        _faceLocked = false;
+        _lockedDir = "S";
+        _wasPushing = false;
     }
     public void OnMove(InputValue value)
     {
@@ -89,15 +98,23 @@ public class PlayerController : MonoBehaviour
             else if (_inputVec.y <= -0.5f) dir = "S";
             beforedic = dir;
         }
+        string dirForAnim = _faceLocked ? _lockedDir : beforedic;
 
         string statePrefix = (_inputVec.magnitude > 0)
-            ? (_isPushing ? "Push" : "Walk")
+            ? "Walk"
             : "Idle";
 
-        string target = $"{statePrefix}{beforedic}";
+        string target = $"{statePrefix}{dirForAnim}";
         var st = animator.GetCurrentAnimatorStateInfo(0);
+
         if (!st.IsName(target))
             animator.Play(target);
+
+
+        if (_isPushing && _inputVec.sqrMagnitude == 0f)
+        {
+            animator.Play($"Idle{(_faceLocked ? _lockedDir : beforedic)}", 0, 0f);
+        }
     }
   
     public void OnInteract(InputValue value)
@@ -134,10 +151,21 @@ public class PlayerController : MonoBehaviour
         Vector2 nextVec = _inputVec * _speed * Time.fixedDeltaTime;
         _rigid.MovePosition(_rigid.position + nextVec);
 
-        if (_isPushing)
+        if (_isPushing && _boxRb != null)
         {
             _boxRb.MovePosition(_boxRb.position + nextVec);
         }
+
+        if (_isPushing && !_wasPushing)
+        {
+            _lockedDir = beforedic;
+            _faceLocked = true;
+        }
+        else if (!_isPushing && _wasPushing)
+        {
+            _faceLocked = false;
+        }
+        _wasPushing = _isPushing;
     }
 
     public void DiePlayer()
@@ -188,6 +216,8 @@ public class PlayerController : MonoBehaviour
             _box = null;
             _boxRb = null;
             box.SetMovable(false);
+
+            _faceLocked = false;
         }
     }
 
