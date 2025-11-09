@@ -50,7 +50,7 @@ public class ChargeHoldInput : MonoBehaviour
     private void OnChargePerformed(InputAction.CallbackContext context)
     {
         tween.Kill();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("map");
         ResetFillImage();
     }
     private void ResetFillImage()
