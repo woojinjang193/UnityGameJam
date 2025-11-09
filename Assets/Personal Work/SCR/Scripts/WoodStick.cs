@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
 public class WoodStick : MonoBehaviour
 {
+    [SerializeField] List<SpriteRenderer> renderers;
     [SerializeField] GameObject normalStick;
     [SerializeField] GameObject fireStick;
     private Animator animator;
