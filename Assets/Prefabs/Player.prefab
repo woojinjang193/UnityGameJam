@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -276272803
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 2
   m_Sprite: {fileID: -9182177788924653191, guid: 96de57d2c493c56458fb7d60a158b7c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -175,7 +175,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 314901071
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: -9182177788924653191, guid: 96de57d2c493c56458fb7d60a158b7c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -288,6 +288,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   _speed: 7
+  clearEffect: {fileID: 8559480485596349865, guid: 5c4dfe97e64fab04d8451b35aac345ed, type: 3}
+  respawnEffect: {fileID: 5575064688273250508, guid: 8643a01c92699ce42b666bf4c0957de4, type: 3}
+  dieEffect: {fileID: 326779933626777819, guid: 75c66f8958a58f04e86144583cc40762, type: 3}
 --- !u!114 &1799106561740045767
 MonoBehaviour:
   m_ObjectHideFlags: 0
