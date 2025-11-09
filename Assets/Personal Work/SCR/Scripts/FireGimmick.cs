@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class FireGimmick : MonoBehaviour
 {
-    [SerializeField] GameObject openDoorObj;
-    [SerializeField] GameObject closeDoorObj;
+    [SerializeField] GameObject fireObj;
     [SerializeField] private bool isFlame;
     [SerializeField] private List<bool> isOn;
     [SerializeField] private List<Gimmic> gimmics;
@@ -44,8 +43,7 @@ public class FireGimmick : MonoBehaviour
 
     public void SetDoor()
     {
-        openDoorObj.SetActive(isFlame);
-        closeDoorObj.SetActive(!isFlame);
+        fireObj.SetActive(isFlame);
     }
 
     private void OnValidate()
