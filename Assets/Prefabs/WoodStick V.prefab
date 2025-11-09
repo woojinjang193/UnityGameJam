@@ -276,6 +276,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0af63d389f4b2644b7386ee5f6371b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WoodStick
+  renderers:
+  - {fileID: 2621526380767433324}
+  - {fileID: 5492412773951267369}
+  - {fileID: 7207162461598453595}
+  - {fileID: 3160940668442398}
+  - {fileID: 2089841770077273390}
+  - {fileID: 6152960237885275000}
   normalStick: {fileID: 7847157920603201257}
   fireStick: {fileID: 4546704351629014535}
 --- !u!114 &3553160404837225536
