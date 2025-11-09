@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -7,11 +8,15 @@ public class ItemStackUI : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private Image stackImage;
-    [SerializeField] private TextMeshProUGUI stackText;
 
     [Header("Stack Info")]
     [SerializeField] private int maxCount = 5;
+
+    [Header("DOTween Setting")]
+    [SerializeField] private float fillDuration = 0.2f;
+
     private int _itemCount;
+    private Tween fillTween;
 
     public int ItemCount
     {
@@ -27,27 +32,19 @@ public class ItemStackUI : MonoBehaviour
     {
         if (Manager.Game.CurStage != 6) return;
         ItemCount = 0;
-        StackImageUpdate();
-        //이벤트 구독
-        //PlayerController.OnItemCountChanged += HandleItemCountChange;
-    }
-    void OnDisable()
-    {
-        //이벤트 구독 해제
-        //PlayerController.OnItemCountChanged -= HandleItemCountChange;
-    }
-    private void HandleItemCountChange(int amountChange)
-    {
-        ItemCount += amountChange;
     }
 
-    private void StackImageUpdate()
+    public void StackImageUpdate()
     {
-        stackImage.fillAmount = (float)ItemCount / maxCount;
-        // if (stackText != null)
-        // {
-        //     stackText.text = ItemCount.ToString();
-        //     stackText.text = ItemCount.Tostring() / maxCount;    
-        // }
+        fillTween.Kill();
+        float targetFill = (float)_itemCount / maxCount;
+
+        fillTween = stackImage.DOFillAmount(targetFill, fillDuration)
+        .SetEase(Ease.OutSine)
+        .SetUpdate(true);
+    }
+    public void StackItemCount()
+    {
+        ItemCount++;
     }
 }
