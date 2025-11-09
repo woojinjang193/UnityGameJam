@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BoxInteraction : MonoBehaviour
@@ -71,6 +72,20 @@ public class BoxInteraction : MonoBehaviour
         }
     }
 
+
+    public void PushBox()
+    {
+        StartCoroutine(Push());
+    }
+
+    private IEnumerator Push()
+    {
+        _rb.bodyType = RigidbodyType2D.Dynamic;
+        yield return new WaitForSeconds(0.5f);
+        _rb.linearVelocity = Vector2.zero;
+        _rb.angularVelocity = 0f;
+        _rb.bodyType = RigidbodyType2D.Kinematic;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
