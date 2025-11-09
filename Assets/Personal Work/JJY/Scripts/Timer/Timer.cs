@@ -7,11 +7,13 @@ public class Timer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
     private float currentTime = 20;
     private Tweener tweener;
+    private Tween lastStageTweenr;
 
     void Awake()
     {
         Manager.Game.OnPlayerStart += StartCountdown;
         Manager.Game.OnPlayerDied += ResetTimer;
+        Manager.Game.OnTransitioning += OnTransitioning;
 
         if (timerText == null)
         {
@@ -33,19 +35,18 @@ public class Timer : MonoBehaviour
 
     private void OnDisable()
     {
+        ResetTimer();
         Manager.Game.OnPlayerStart -= StartCountdown;
         Manager.Game.OnPlayerDied -= ResetTimer;
+        Manager.Game.OnTransitioning -= OnTransitioning;
     }
     // 죽었을때 사용
     public void ResetTimer()
     {
-        //if (tweener != null && tweener.IsActive())
-        //{
-        //    tweener.Kill();
-        //}
         tweener.Kill();
+        lastStageTweenr.Kill();
+        timerText.color = Color.white;
         currentTime = 20;
-        //Debug.Log($"리셋리셋 {currentTime}");
         UpdateTimerText(currentTime);
     }
     // 입력시 사용
@@ -53,6 +54,20 @@ public class Timer : MonoBehaviour
     {
         Debug.Log("타이머 시작");
 
+        if (Manager.Game.CurStage < 8)
+        {
+            StartNormalTimer();
+        }
+        else
+        {
+            StartLastStageTimer();
+        }
+        
+    }
+    private void StartNormalTimer()
+    {
+        tweener.Kill();
+        lastStageTweenr.Kill();
         tweener = DOTween.To(
             () => currentTime,
             x => currentTime = x,
@@ -61,7 +76,21 @@ public class Timer : MonoBehaviour
         )
         .SetEase(Ease.Linear)
         .OnUpdate(OnTimerUpdate)
-        .OnComplete(OnTimerComplete);
+        .OnComplete(OnTimerComplete)
+        .SetUpdate(true);
+    }
+    private void StartLastStageTimer()
+    {
+        tweener.Kill();
+        lastStageTweenr.Kill();
+        timerText.text = "99:99";
+        timerText.color = Color.white;
+
+        lastStageTweenr = DOTween.Sequence()
+        .Append(timerText.DOColor(new Color(1f, 1f, 1f, 0f), 0.5f))
+        .Append(timerText.DOColor(Color.white, 0.5f))
+        .SetLoops(-1, LoopType.Restart)
+        .SetUpdate(true);
     }
 
     private void OnTimerUpdate()
@@ -82,9 +111,13 @@ public class Timer : MonoBehaviour
     }
     void OnDestroy()
     {
-        if (tweener != null && tweener.IsActive())
-        {
-            tweener.Kill();
-        }
+        tweener.Kill();
+        lastStageTweenr.Kill();
+    }
+
+    // 20초 타이머 멈추기
+    private void OnTransitioning()
+    {
+        tweener.Pause();
     }
 }

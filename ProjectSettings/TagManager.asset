@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Box
   - Ground
+  - Fire
+  - Rocket
   layers:
   - Default
   - TransparentFX
@@ -42,6 +44,15 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: object
+    uniqueID: 314901071
+    locked: 0
+  - name: shadow
+    uniqueID: 4018694493
+    locked: 0
+  - name: Mirror
+    uniqueID: 3806965311
     locked: 0
   m_RenderingLayers:
   - Default

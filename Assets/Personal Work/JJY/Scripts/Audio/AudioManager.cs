@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioManager : Singleton<AudioManager>
+public class AudioManager : MonoBehaviour
 {
-
+    public static AudioManager Instance { get; private set; }
     [Header("Mixer")]
     public AudioMixer mixer;
 
@@ -15,8 +15,11 @@ public class AudioManager : Singleton<AudioManager>
     public AudioMixerGroup sfxGroup;
 
     [Header("AudioSources")]
-    public AudioSource bgmSourcePrefab;
+    public AudioSource titleBGM;
     public int sfxPoolSize = 10;
+    public AudioClip clickSFX;
+    public AudioClip spawnSFX;
+    public AudioClip deathSFX;
 
     private const string MASTER_PARAM = "MasterVolume";
     private const string BGM_PARAM = "BGMVolume";
@@ -29,9 +32,15 @@ public class AudioManager : Singleton<AudioManager>
     private AudioSource bgmSource;
     private List<AudioSource> sfxPool = new List<AudioSource>();
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
         EnsureBgmSource();
         CreateSfxPool();
@@ -53,9 +62,9 @@ public class AudioManager : Singleton<AudioManager>
     {
         if (bgmSource == null)
         {
-            if (bgmSourcePrefab != null)
+            if (titleBGM != null)
             {
-                bgmSource = Instantiate(bgmSourcePrefab, transform);
+                bgmSource = Instantiate(titleBGM, transform);
             }
             else
             {
@@ -90,7 +99,6 @@ public class AudioManager : Singleton<AudioManager>
     public void SetBGMVolume(float value)
     {
         ApplyVolume(BGM_PARAM, value);
-        if (bgmSource != null) bgmSource.volume = 1f;
     }
 
     public void SetSFXVolume(float value)
@@ -177,6 +185,7 @@ public class AudioManager : Singleton<AudioManager>
         go.transform.SetParent(transform);
         var src = go.AddComponent<AudioSource>();
         src.playOnAwake = false;
+        if (sfxGroup != null) src.outputAudioMixerGroup = sfxGroup;
         sfxPool.Add(src);
         return src;
     }

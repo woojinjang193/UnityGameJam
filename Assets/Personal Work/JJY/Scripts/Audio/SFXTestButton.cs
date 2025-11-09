@@ -11,7 +11,7 @@ public class SFXTestButton : MonoBehaviour
         button.onClick.AddListener(() =>
         {
             if (testClip != null)
-                Manager.Audio.PlaySFX(testClip);
+                AudioManager.Instance.PlaySFX(testClip);
             else
                 Debug.LogWarning("SFXTestButton: testClip이 지정되지 않았습니다!");
         });

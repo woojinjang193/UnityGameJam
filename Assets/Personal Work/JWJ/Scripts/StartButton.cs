@@ -14,6 +14,8 @@ public class StartButton : MonoBehaviour
 
     private void OnButtonClicked()
     {
-        SceneManager.LoadScene("map");
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.clickSFX);
+        Manager.Game.LevelUp();
+        SceneManager.LoadScene("Intro");
     }
 }

@@ -5,6 +5,8 @@ public class BGButton : Gimmic
 {
     [SerializeField] GameObject OnButtonObj;
     [SerializeField] GameObject OffButtonObj;
+    [SerializeField] GameObject CreateBridgeObj;
+    private int playerNum = 0;
 
     void Start()
     {
@@ -14,9 +16,11 @@ public class BGButton : Gimmic
 
     public void SetButton()
     {
+        isOn = playerNum > 0;
         OnButtonObj.SetActive(isOn);
         OffButtonObj.SetActive(!isOn);
         OnGimmic?.Invoke(isOn);
+        if (CreateBridgeObj != null) CreateBridgeObj.SetActive(isOn);
     }
 
     private void OnValidate()
@@ -29,7 +33,7 @@ public class BGButton : Gimmic
     {
         if (collision.gameObject.CompareTag("Box"))
         {
-            isOn = true;
+            playerNum++;
             SetButton();
         }
     }
@@ -38,7 +42,7 @@ public class BGButton : Gimmic
     {
         if (collision.gameObject.CompareTag("Box"))
         {
-            isOn = false;
+            playerNum--;
             SetButton();
         }
     }
