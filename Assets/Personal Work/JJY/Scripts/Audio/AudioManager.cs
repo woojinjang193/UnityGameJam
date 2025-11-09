@@ -96,7 +96,6 @@ public class AudioManager : MonoBehaviour
     public void SetBGMVolume(float value)
     {
         ApplyVolume(BGM_PARAM, value);
-        if (bgmSource != null) bgmSource.volume = 1f;
     }
 
     public void SetSFXVolume(float value)
@@ -183,6 +182,7 @@ public class AudioManager : MonoBehaviour
         go.transform.SetParent(transform);
         var src = go.AddComponent<AudioSource>();
         src.playOnAwake = false;
+        if (sfxGroup != null) src.outputAudioMixerGroup = sfxGroup;
         sfxPool.Add(src);
         return src;
     }

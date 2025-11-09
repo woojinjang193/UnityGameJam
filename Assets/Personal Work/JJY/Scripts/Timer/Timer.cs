@@ -33,19 +33,15 @@ public class Timer : MonoBehaviour
 
     private void OnDisable()
     {
+        ResetTimer();
         Manager.Game.OnPlayerStart -= StartCountdown;
         Manager.Game.OnPlayerDied -= ResetTimer;
     }
     // 죽었을때 사용
     public void ResetTimer()
     {
-        //if (tweener != null && tweener.IsActive())
-        //{
-        //    tweener.Kill();
-        //}
         tweener.Kill();
         currentTime = 20;
-        //Debug.Log($"리셋리셋 {currentTime}");
         UpdateTimerText(currentTime);
     }
     // 입력시 사용

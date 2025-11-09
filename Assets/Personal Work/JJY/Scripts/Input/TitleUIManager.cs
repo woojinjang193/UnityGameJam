@@ -8,12 +8,14 @@ public class TitleUIManager : MonoBehaviour
     [SerializeField] private Button settingButton1;
     [SerializeField] private Button settingButton2;
     [SerializeField] private GameObject settingsPanel;
+    private PanelController panelController;
     private PlayerInput playerInput;
     private InputAction cancelAction;
 
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
+        panelController = settingsPanel.GetComponent<PanelController>();
         cancelAction = playerInput.actions["Cancel"];
         settingButton1.onClick.AddListener(OpenSettings);
         settingButton2.onClick.AddListener(OpenSettings);
@@ -39,11 +41,11 @@ public class TitleUIManager : MonoBehaviour
 
     public void OpenSettings()
     {
-        settingsPanel.SetActive(true);
+        panelController.OpenPanel();
     }
 
     public void CloseSettings()
     {
-        settingsPanel.SetActive(false);
+        panelController.ClosePanel();
     }
 }
