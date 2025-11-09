@@ -30,6 +30,8 @@ public class StageManager : MonoBehaviour
         Debug.Log(Manager.Game.PlayerTransform.gameObject.name);
         //camTarget.CustomLookAtTarget = false;   // (필요하면) TrackingTarget으로 회전까지 하게
         cinemachine.Target = camTarget;
+        //재영 추가
+        Manager.Game.Coin = 0;
     }
 
     private void ShowStageTitle()

@@ -8,6 +8,8 @@ public class ItemStackUI : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private Image stackImage;
+    [SerializeField] private Image backImage;
+    [SerializeField] private TextMeshProUGUI infoText;
 
     [Header("Stack Info")]
     [SerializeField] private int maxCount = 4;
@@ -31,6 +33,7 @@ public class ItemStackUI : MonoBehaviour
     void Awake()
     {
         if (Manager.Game.CurStage != 8) return;
+        infoText?.gameObject.SetActive(false);
         Debug.Log($"{Manager.Game}");
         Manager.Game.OnCoinCountChanged += HandleCoinCountChange;
         ItemCount = Manager.Game.Coin;
@@ -54,7 +57,16 @@ public class ItemStackUI : MonoBehaviour
 
         fillTween = stackImage.DOFillAmount(targetFill, fillDuration)
         .SetEase(Ease.OutSine)
-        .SetUpdate(true);
+        .SetUpdate(true)
+        .OnComplete(() =>
+        {
+            if (ItemCount >= 4)
+            {
+                stackImage?.gameObject.SetActive(false);
+                backImage?.gameObject.SetActive(false);
+                infoText?.gameObject.SetActive(true);
+            }
+        });
     }
     //
     public void StackItemCount()
