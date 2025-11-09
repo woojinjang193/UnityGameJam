@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class YSort : MonoBehaviour
 {
-    private SpriteRenderer sr;
+    [SerializeField] private SpriteRenderer sr;
 
     void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+            sr = GetComponent<SpriteRenderer>();
     }
 
     void LateUpdate()
