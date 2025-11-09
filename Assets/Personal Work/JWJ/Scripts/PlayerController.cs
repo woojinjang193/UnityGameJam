@@ -15,6 +15,9 @@ public struct InputRecord
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _speed = 7;
+    [SerializeField] private GameObject clearEffect;
+    [SerializeField] private GameObject respawnEffect;
+    [SerializeField] private GameObject dieEffect;
 
     private Vector2 _inputVec;
     private Rigidbody2D _rigid;
@@ -65,7 +68,7 @@ public class PlayerController : MonoBehaviour
         _startColor.a = 1;
         _spriteRenderer.color = _startColor;
         transform.localScale = new Vector3(1, 1, 1);
-
+        PlayClearEffect(respawnEffect);
         _faceLocked = false;
         _lockedDir = "S";
         _wasPushing = false;
@@ -77,6 +80,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTransitioning()
     {
+        PlayClearEffect(clearEffect);
         gameObject.SetActive(false);
         Debug.Log("게임 클리어");
     }
@@ -228,7 +232,7 @@ public class PlayerController : MonoBehaviour
         }
         _isRecording = false;
         _inputVec = Vector2.zero;
-
+        PlayClearEffect(dieEffect);
         _dieCount++;
         Manager.Game.PlayerDieAndSave(_records, gameObject, _dieCount, _recordStartTime);
     }
@@ -281,6 +285,20 @@ public class PlayerController : MonoBehaviour
 
             _faceLocked = false;
         }
+    }
+
+    public void PlayClearEffect(GameObject effectPrefeb)
+    {
+        Vector3 effectPos = gameObject.transform.position;
+        if (effectPrefeb == clearEffect)
+            effectPos.y += 2;
+        else if (effectPrefeb == dieEffect)
+            effectPos.y += 0.6f;
+        else
+            effectPos.y += 0.2f;
+        GameObject effect = Instantiate(effectPrefeb, effectPos, Quaternion.identity);
+
+        Destroy(effect, 2f);
     }
 
 }
