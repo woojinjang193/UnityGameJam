@@ -4,6 +4,8 @@ public class BoxInteraction : MonoBehaviour
 {
     [SerializeField] private bool _playerOnly = true;
     [SerializeField] private int _ownerId = 0;
+    private Vector2 _spawnPos;
+    public Vector2 SpawnPos => _spawnPos;
 
     private SpriteRenderer _sr;
     private Color _color;
@@ -25,13 +27,15 @@ public class BoxInteraction : MonoBehaviour
         foreach (var box in allBoxes)
         {
             if (box == this) continue;
-            if (box._ownerId == _ownerId) continue;
+
             var otherCol = box.GetComponent<Collider2D>();
-            if (otherCol != null)
-                Physics2D.IgnoreCollision(_col, otherCol, true);
+            if (otherCol == null) continue;
+
+            bool ignore = (box._ownerId != _ownerId);
+            Physics2D.IgnoreCollision(_col, otherCol, ignore);
         }
     }
-    public void SetBox(bool isForPlayer, int ownerId)
+    public void SetBox(bool isForPlayer, int ownerId, Vector2 spawnPos)
     {
         if (isForPlayer)
         {
@@ -39,6 +43,7 @@ public class BoxInteraction : MonoBehaviour
             _ownerId = 0;
             _color.a = 1f;
             _sr.color = _color;
+            _spawnPos = spawnPos;
         }
         else
         {
@@ -46,6 +51,7 @@ public class BoxInteraction : MonoBehaviour
             _ownerId = ownerId;
             _color.a = 0.3f;
             _sr.color = _color;
+            _spawnPos = spawnPos;
 
         }
     }

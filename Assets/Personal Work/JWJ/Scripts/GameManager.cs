@@ -23,7 +23,6 @@ public class GameManager : Singleton<GameManager>
     private readonly List<BoxInteraction> _boxes = new();
 
     private List<EchoController> _echos = new List<EchoController>();
-    private List<BoxInteraction> _boxs = new List<BoxInteraction>();
     private PlayerController _playerCon;
 
     public event Action OnPlayerDied;
@@ -143,7 +142,7 @@ public class GameManager : Singleton<GameManager>
                     _boxPosList.Add((Vector2)transform.position);
                 }
             }
-
+            RepositionBoxs();
             SpawnBoxes(true);
         }
     }
@@ -161,27 +160,22 @@ public class GameManager : Singleton<GameManager>
 
     private void SpawnBoxes(bool isForPlayer)
     {
-        if (_boxes.Count == 0)
+        for (int i = 0; i < _boxPosList.Count; i++)
         {
-            for (int i = 0; i < _boxPosList.Count; i++)
-            {
-                var go = Instantiate(_boxPrefab, _boxPosList[i], Quaternion.identity);
-                var box = go.GetComponent<BoxInteraction>();
-                box.SetBox(isForPlayer, _echoID);
-                _boxes.Add(box);
-            }
-        }
-        else
-        {
-            int count = Mathf.Min(_boxes.Count, _boxPosList.Count);
-            for (int i = 0; i < count; i++)
-            {
-                var b = _boxes[i];
-                b.transform.SetPositionAndRotation(_boxPosList[i], Quaternion.identity);
-                b.SetBox(isForPlayer, _echoID);
-                var rb = b.GetComponent<Rigidbody2D>();
-                if (rb) { rb.linearVelocity = Vector2.zero; rb.angularVelocity = 0f; rb.position = _boxPosList[i]; }
-            }
+            var go = Instantiate(_boxPrefab, _boxPosList[i], Quaternion.identity);
+            var box = go.GetComponent<BoxInteraction>();
+            box.SetBox(isForPlayer, _echoID, _boxPosList[i]);
+            _boxes.Add(box);
         }
     }
+
+    private void RepositionBoxs()
+    {
+        for(int i = 0; i < _boxes.Count; i++)
+        {
+            var box = _boxes[i];
+            box.transform.position = box.SpawnPos;
+        }
+    }
+
 }

@@ -7358,7 +7358,8 @@ MonoBehaviour:
   stageName: Together
   respawnPoint: {fileID: 1561844211}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!4 &124033513
 Transform:
   m_ObjectHideFlags: 0
@@ -7603,7 +7604,8 @@ MonoBehaviour:
   stageName: 0
   respawnPoint: {fileID: 1322116174}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!1001 &157094743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10249,7 +10251,8 @@ MonoBehaviour:
   stageName: Sacrifice
   respawnPoint: {fileID: 1422372009}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!4 &245315973
 Transform:
   m_ObjectHideFlags: 0
@@ -10302,7 +10305,8 @@ MonoBehaviour:
   stageName: Rocket
   respawnPoint: {fileID: 1051883213}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!4 &260237680
 Transform:
   m_ObjectHideFlags: 0
@@ -42534,7 +42538,8 @@ MonoBehaviour:
   stageName: Harmony
   respawnPoint: {fileID: 1630683151}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!4 &1167492432
 Transform:
   m_ObjectHideFlags: 0
@@ -46566,7 +46571,8 @@ MonoBehaviour:
   stageName: Mirror
   respawnPoint: {fileID: 1508457037}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!4 &1293393491
 Transform:
   m_ObjectHideFlags: 0
@@ -54785,7 +54791,8 @@ MonoBehaviour:
   stageName: 0
   respawnPoint: {fileID: 675453340}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!4 &1340115493
 Transform:
   m_ObjectHideFlags: 0
@@ -66296,6 +66303,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519439041}
   m_CullTransparentMesh: 1
+--- !u!1 &1521225221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1521225222}
+  m_Layer: 0
+  m_Name: BoxPos (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1521225222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521225221}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: -5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2100062302}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1528466903
 GameObject:
   m_ObjectHideFlags: 0
@@ -67261,7 +67299,8 @@ MonoBehaviour:
   stageName: 0
   respawnPoint: {fileID: 1508883597}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!4 &1621342722
 Transform:
   m_ObjectHideFlags: 0
@@ -78966,7 +79005,8 @@ MonoBehaviour:
   stageName: Shadow
   respawnPoint: {fileID: 378004121}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!4 &2007072914
 Transform:
   m_ObjectHideFlags: 0
@@ -79382,7 +79422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2100062302
 Transform:
   m_ObjectHideFlags: 0
@@ -79401,6 +79441,7 @@ Transform:
   - {fileID: 1424415050}
   - {fileID: 343789171}
   - {fileID: 1528466904}
+  - {fileID: 1521225222}
   m_Father: {fileID: 234351416}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2100062303
@@ -79419,7 +79460,9 @@ MonoBehaviour:
   stageName: 2
   respawnPoint: {fileID: 343789171}
   IsBox: 1
-  BoxTransform: {fileID: 1528466904}
+  BoxTransform:
+  - {fileID: 1528466904}
+  - {fileID: 1521225222}
 --- !u!1 &2103033989
 GameObject:
   m_ObjectHideFlags: 0
