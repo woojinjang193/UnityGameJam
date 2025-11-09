@@ -7,5 +7,6 @@ public class StartDialogueEvent : MonoBehaviour
     public void DialogueStart()
     {
         _dialogue.StartTpying();
+        gameObject.SetActive(false);
     }
 }
