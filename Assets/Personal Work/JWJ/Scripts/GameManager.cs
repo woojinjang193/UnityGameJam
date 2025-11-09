@@ -8,7 +8,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class GameManager : Singleton<GameManager>
 {
     public int CurStage; //{ get; private set; }
-
+    public int Coin;
     private float _spawnDelayTime = 2;
 
     private GameObject _echo;
@@ -152,7 +152,7 @@ public class GameManager : Singleton<GameManager>
 
         if (_isBox)
         {
-            if (CurStage == 4)
+            if (CurStage == 4 || CurStage == 8)
             {
                 RepositionFires();
                 SpawnFire(false);
