@@ -39,16 +39,16 @@ public class GameManager : Singleton<GameManager>
     private int _echoID = 0;
 
     //재영 추가
-    public event Action<int> OnCoinCountChanged; 
+    public event Action<int> OnCoinCountChanged;
 
     private int _coin;
-    public int Coin 
+    public int Coin
     {
         get => _coin;
         set
         {
             _coin = value;
-            OnCoinCountChanged?.Invoke(_coin); 
+            OnCoinCountChanged?.Invoke(_coin);
         }
     }
     protected override void Awake()
@@ -152,6 +152,7 @@ public class GameManager : Singleton<GameManager>
 
         foreach (var ech in _echos)
         {
+            ech.gameObject.SetActive(true);
             ech.ResetToSpawn(_spawnPoint);
         }
 
