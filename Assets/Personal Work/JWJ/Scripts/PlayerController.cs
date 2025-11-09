@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnEnable()
     {
+        Manager.Game.OnTransitioning += OnTransitioning;
         _records.Clear();
         _isRecording = false;
         _isPlaying = false;
@@ -69,8 +70,19 @@ public class PlayerController : MonoBehaviour
         _lockedDir = "S";
         _wasPushing = false;
     }
+    private void OnDisable()
+    {
+        Manager.Game.OnTransitioning -= OnTransitioning;
+    }
+
+    private void OnTransitioning()
+    {
+        gameObject.SetActive(false);
+        Debug.Log("게임 클리어");
+    }
     public void OnMove(InputValue value)
     {
+
         _inputVec = value.Get<Vector2>();
 
         if (!_isPlaying && _inputVec != Vector2.zero)
@@ -157,7 +169,7 @@ public class PlayerController : MonoBehaviour
     {
         _speed = _isPushing ? 3.5f : 7f;
 
-        if (_isRecording && _inputVec != _lastRecordedInput)
+        if (_isPlaying && _isRecording && _inputVec != _lastRecordedInput)
         {
             _records.Add(new InputRecord
             {

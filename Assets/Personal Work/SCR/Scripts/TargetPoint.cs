@@ -17,9 +17,10 @@ public class TargetPoint : MonoBehaviour
 
     private IEnumerator GoNextStage()
     {
+        Manager.Game.StageClear();
         yield return new WaitForSeconds(1.5f);
         Manager.Game.LevelUp();
         //SceneManager.LoadScene("map");
-        SceneManager.LoadSceneAsync("map");
+        SceneManager.LoadSceneAsync("InGame");
     }
 }

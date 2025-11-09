@@ -13,6 +13,7 @@ public class Timer : MonoBehaviour
     {
         Manager.Game.OnPlayerStart += StartCountdown;
         Manager.Game.OnPlayerDied += ResetTimer;
+        Manager.Game.OnTransitioning += OnTransitioning;
 
         if (timerText == null)
         {
@@ -37,6 +38,7 @@ public class Timer : MonoBehaviour
         ResetTimer();
         Manager.Game.OnPlayerStart -= StartCountdown;
         Manager.Game.OnPlayerDied -= ResetTimer;
+        Manager.Game.OnTransitioning -= OnTransitioning;
     }
     // 죽었을때 사용
     public void ResetTimer()
@@ -111,5 +113,11 @@ public class Timer : MonoBehaviour
     {
         tweener.Kill();
         lastStageTweenr.Kill();
+    }
+
+    // 20초 타이머 멈추기
+    private void OnTransitioning()
+    {
+        tweener.Pause();
     }
 }

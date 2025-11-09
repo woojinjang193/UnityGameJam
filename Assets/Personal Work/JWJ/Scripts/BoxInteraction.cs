@@ -51,6 +51,18 @@ public class BoxInteraction : MonoBehaviour
             _color.a = 0.3f;
             _sr.color = _color;
             _spawnPos = spawnPos;
+
+            var renderers = GetComponentsInChildren<SpriteRenderer>(true);
+            if (renderers != null)
+            {
+                foreach (var renderer in renderers)
+                {
+                    var c = renderer.color;
+                    c.a = 0.3f;
+                    renderer.color = c;
+                }
+            }
+            
         }
     }
     public static void InitCollisionAll()

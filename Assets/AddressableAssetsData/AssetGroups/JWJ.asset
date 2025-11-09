@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: JWJ
   m_GUID: 0fe6987af8239284a8500dfafff8b405
   m_SerializeEntries:
+  - m_GUID: 4c059ec739398964d8889b67c62d2dc9
+    m_Address: Assets/Prefabs/WoodStick H.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - FireHo
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 76b15449a1091f34591f231f97242019
     m_Address: Assets/Prefabs/Box.prefab
     m_ReadOnly: 0
@@ -32,6 +38,12 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Echo
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c5e2869620f4d2f45adf61a4e683f4d0
+    m_Address: Assets/Prefabs/WoodStick V.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - FireVer
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f258e0ef46fd4414ebe196983c20423d, type: 2}

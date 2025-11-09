@@ -5,6 +5,6 @@ public class NextScene : MonoBehaviour
 {
     public void NextSceneGOGO()
     {
-        SceneManager.LoadScene("map");
+        SceneManager.LoadScene("InGame");
     }
 }
