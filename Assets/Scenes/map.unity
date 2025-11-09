@@ -1746,7 +1746,8 @@ MonoBehaviour:
   stageName: 0
   respawnPoint: {fileID: 1027552956}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!4 &133529894
 Transform:
   m_ObjectHideFlags: 0
@@ -15385,7 +15386,8 @@ MonoBehaviour:
   stageName: Together
   respawnPoint: {fileID: 43194769}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!4 &378024861
 Transform:
   m_ObjectHideFlags: 0
@@ -16288,7 +16290,8 @@ MonoBehaviour:
   stageName: 0
   respawnPoint: {fileID: 411125169}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!4 &423697194
 Transform:
   m_ObjectHideFlags: 0
@@ -39886,7 +39889,8 @@ MonoBehaviour:
   stageName: 2
   respawnPoint: {fileID: 125045713}
   IsBox: 1
-  BoxTransform: {fileID: 835795025}
+  BoxTransform:
+  - {fileID: 835795025}
 --- !u!4 &888755989
 Transform:
   m_ObjectHideFlags: 0
@@ -51219,7 +51223,8 @@ MonoBehaviour:
   stageName: Harmony
   respawnPoint: {fileID: 2113785393}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!4 &1086006373
 Transform:
   m_ObjectHideFlags: 0
@@ -51688,7 +51693,8 @@ MonoBehaviour:
   stageName: Shadow
   respawnPoint: {fileID: 575630426}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!4 &1108573987
 Transform:
   m_ObjectHideFlags: 0
@@ -57522,7 +57528,8 @@ MonoBehaviour:
   stageName: 0
   respawnPoint: {fileID: 393041191}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!4 &1233610991
 Transform:
   m_ObjectHideFlags: 0
@@ -61412,7 +61419,8 @@ MonoBehaviour:
   stageName: Mirror
   respawnPoint: {fileID: 150738322}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!4 &1465602420
 Transform:
   m_ObjectHideFlags: 0
@@ -68737,7 +68745,8 @@ MonoBehaviour:
   stageName: Rocket
   respawnPoint: {fileID: 1463572897}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!4 &1580246130
 Transform:
   m_ObjectHideFlags: 0
@@ -98795,7 +98804,8 @@ MonoBehaviour:
   stageName: Sacrifice
   respawnPoint: {fileID: 335244430}
   IsBox: 0
-  BoxTransform: {fileID: 0}
+  BoxTransform:
+  - {fileID: 0}
 --- !u!4 &2142700607
 Transform:
   m_ObjectHideFlags: 0

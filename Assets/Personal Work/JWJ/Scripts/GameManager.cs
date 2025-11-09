@@ -14,10 +14,13 @@ public class GameManager : Singleton<GameManager>
 
     private GameObject _echo;
     private GameObject _player;
-    private GameObject _box;
+    //private GameObject _curBox;
     public Transform PlayerTransform;
     private Vector2 _spawnPoint = Vector2.zero;
-    private Vector2 _boxPos = Vector2.zero;
+
+    private GameObject _boxPrefab;
+    private readonly List<Vector2> _boxPosList = new();
+    private readonly List<BoxInteraction> _boxes = new();
 
     private List<EchoController> _echos = new List<EchoController>();
     private PlayerController _playerCon;
@@ -68,7 +71,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
-            _box = handle.Result;
+            _boxPrefab = handle.Result;
             Debug.Log($"Box 로드 완료");
         }
         else
@@ -106,9 +109,10 @@ public class GameManager : Singleton<GameManager>
         player.transform.rotation = Quaternion.identity;
         player.SetActive(true);
 
-        if(_isBox)
+        if (_isBox)
         {
-            SpawnBox(false);
+            RepositionBoxs();
+            SpawnBoxes(false);
         }
         //Debug.Log("플레이어, 에코 프리팹 소환");
     }
@@ -123,16 +127,29 @@ public class GameManager : Singleton<GameManager>
         CurStage++;
         _echos.Clear();
     }
+    public void InitLevel()
+    {
+        CurStage = 0;
+        _echos.Clear();
+    }
 
     public void SetRespawnPoint(Vector2 pos, Stage stage)
     {
         _spawnPoint = pos;
-        _isBox = false;
-        if (stage.IsBox)
+        _boxPosList.Clear();
+        _isBox = stage.IsBox;
+
+        if (_isBox && stage.BoxTransform != null)
         {
-            _isBox = true;
-            _boxPos = new Vector2(stage.BoxTransform.position.x, stage.BoxTransform.position.y);
-            SpawnBox(true);
+            foreach (var transform in stage.BoxTransform)
+            {
+                if (transform)
+                {
+                    _boxPosList.Add((Vector2)transform.position);
+                }
+            }
+            RepositionBoxs();
+            SpawnBoxes(true);
         }
     }
     public void SpawnPlayer()
@@ -147,9 +164,25 @@ public class GameManager : Singleton<GameManager>
         _playerCon.DiePlayer();
     }
 
-    private void SpawnBox(bool isForPlayer)
+    private void SpawnBoxes(bool isForPlayer)
     {
-        var box = Instantiate(_box, _boxPos, Quaternion.identity).GetComponent<BoxInteraction>();
-        box.SetBox(isForPlayer, _echoID);
+        for (int i = 0; i < _boxPosList.Count; i++)
+        {
+            var go = Instantiate(_boxPrefab, _boxPosList[i], Quaternion.identity);
+            var box = go.GetComponent<BoxInteraction>();
+            box.SetBox(isForPlayer, _echoID, _boxPosList[i]);
+            _boxes.Add(box);
+        }
+        BoxInteraction.InitCollisionAll();
     }
+
+    private void RepositionBoxs()
+    {
+        for(int i = 0; i < _boxes.Count; i++)
+        {
+            var box = _boxes[i];
+            box.transform.position = box.SpawnPos;
+        }
+    }
+
 }

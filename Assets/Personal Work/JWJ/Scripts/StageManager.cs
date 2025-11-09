@@ -13,7 +13,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] TMP_Text stageTitle;
     private void Awake()
     {
-        int index = Manager.Game.CurStage;
+        int index = Manager.Game.CurStage - 1;
         _stages[index].gameObject.SetActive(true);
         //Debug.Log($"지금 스테이지 {index}");
         //Debug.Log($"x {_stages[index].respawnPoint.position.x}");
