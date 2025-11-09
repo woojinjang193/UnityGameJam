@@ -1209,7 +1209,6 @@ GameObject:
   m_Component:
   - component: {fileID: 86375627}
   - component: {fileID: 86375629}
-  - component: {fileID: 86375628}
   m_Layer: 0
   m_Name: Button_on
   m_TagString: Untagged
@@ -1232,18 +1231,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 894357739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &86375628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 86375626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &86375629
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12407,7 +12394,6 @@ GameObject:
   m_Component:
   - component: {fileID: 301983882}
   - component: {fileID: 301983884}
-  - component: {fileID: 301983883}
   m_Layer: 0
   m_Name: Button_off
   m_TagString: Untagged
@@ -12430,18 +12416,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 787335260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &301983883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 301983881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &301983884
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14713,7 +14687,7 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -15468,7 +15442,6 @@ GameObject:
   m_Component:
   - component: {fileID: 380738715}
   - component: {fileID: 380738717}
-  - component: {fileID: 380738716}
   m_Layer: 0
   m_Name: Button_on
   m_TagString: Untagged
@@ -15491,18 +15464,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 423060681}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &380738716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 380738714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &380738717
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16384,7 +16345,6 @@ GameObject:
   m_Component:
   - component: {fileID: 424753133}
   - component: {fileID: 424753135}
-  - component: {fileID: 424753134}
   m_Layer: 0
   m_Name: Button_on
   m_TagString: Untagged
@@ -16407,18 +16367,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 863570174}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &424753134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 424753132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &424753135
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17266,7 +17214,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 314901071
   m_SortingLayer: 2
-  m_SortingOrder: -300
+  m_SortingOrder: -132
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -20152,7 +20100,7 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -24783,7 +24731,7 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -24837,7 +24785,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 314901071
   m_SortingLayer: 2
-  m_SortingOrder: -400
+  m_SortingOrder: -232
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -26265,7 +26213,6 @@ GameObject:
   m_Component:
   - component: {fileID: 627741339}
   - component: {fileID: 627741341}
-  - component: {fileID: 627741340}
   m_Layer: 0
   m_Name: Button_on
   m_TagString: Untagged
@@ -26288,18 +26235,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 681678970}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &627741340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 627741338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &627741341
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26749,7 +26684,6 @@ GameObject:
   m_Component:
   - component: {fileID: 675753067}
   - component: {fileID: 675753069}
-  - component: {fileID: 675753068}
   m_Layer: 0
   m_Name: Button_on
   m_TagString: Untagged
@@ -26772,18 +26706,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1707152988}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &675753068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675753066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &675753069
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -31384,7 +31306,6 @@ GameObject:
   m_Component:
   - component: {fileID: 685752248}
   - component: {fileID: 685752250}
-  - component: {fileID: 685752249}
   m_Layer: 0
   m_Name: Button_off
   m_TagString: Untagged
@@ -31407,18 +31328,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 586625661}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &685752249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 685752247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &685752250
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37774,7 +37683,6 @@ GameObject:
   m_Component:
   - component: {fileID: 839057260}
   - component: {fileID: 839057262}
-  - component: {fileID: 839057261}
   m_Layer: 0
   m_Name: Button_off
   m_TagString: Untagged
@@ -37797,18 +37705,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1707152988}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &839057261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 839057259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &839057262
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -38427,7 +38323,6 @@ GameObject:
   m_Component:
   - component: {fileID: 878074212}
   - component: {fileID: 878074214}
-  - component: {fileID: 878074213}
   m_Layer: 0
   m_Name: Button_off
   m_TagString: Untagged
@@ -38450,18 +38345,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 376306454}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &878074213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 878074211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &878074214
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -39950,7 +39833,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &888755988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44511,7 +44394,6 @@ GameObject:
   m_Component:
   - component: {fileID: 906940840}
   - component: {fileID: 906940842}
-  - component: {fileID: 906940841}
   m_Layer: 0
   m_Name: Button_off
   m_TagString: Untagged
@@ -44534,18 +44416,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 222171014}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &906940841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906940839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &906940842
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -44681,7 +44551,7 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -46855,7 +46725,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 314901071
   m_SortingLayer: 2
-  m_SortingOrder: -200
+  m_SortingOrder: -32
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -47587,7 +47457,7 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -56813,7 +56683,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1199144004}
   - component: {fileID: 1199144006}
-  - component: {fileID: 1199144005}
   m_Layer: 0
   m_Name: Button_on
   m_TagString: Untagged
@@ -56836,18 +56705,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 222171014}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1199144005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1199144003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &1199144006
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -57312,7 +57169,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1224173752}
   - component: {fileID: 1224173754}
-  - component: {fileID: 1224173753}
   m_Layer: 0
   m_Name: Button_off
   m_TagString: Untagged
@@ -57335,18 +57191,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 894357739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1224173753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224173751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &1224173754
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -57415,7 +57259,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1225057552}
   - component: {fileID: 1225057554}
-  - component: {fileID: 1225057553}
   m_Layer: 0
   m_Name: Button_on
   m_TagString: Untagged
@@ -57438,18 +57281,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1091177511}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1225057553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225057551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &1225057554
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -57723,7 +57554,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1242020431}
   - component: {fileID: 1242020433}
-  - component: {fileID: 1242020432}
   m_Layer: 0
   m_Name: Button_off
   m_TagString: Untagged
@@ -57746,18 +57576,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 863570174}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1242020432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242020430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &1242020433
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -58792,7 +58610,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1271253421}
   - component: {fileID: 1271253423}
-  - component: {fileID: 1271253422}
   m_Layer: 0
   m_Name: Button_off
   m_TagString: Untagged
@@ -58815,18 +58632,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1855561241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1271253422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1271253420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &1271253423
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -59101,6 +58906,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7947911505844789838, guid: c5bdca1933fde624698bb8c6d6daa44b, type: 3}
       propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947911505844789838, guid: c5bdca1933fde624698bb8c6d6daa44b, type: 3}
+      propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7947911505844789838, guid: c5bdca1933fde624698bb8c6d6daa44b, type: 3}
@@ -59413,7 +59222,7 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -60397,7 +60206,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1385546763}
   - component: {fileID: 1385546765}
-  - component: {fileID: 1385546764}
   m_Layer: 0
   m_Name: Button_off
   m_TagString: Untagged
@@ -60420,18 +60228,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1091177511}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1385546764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1385546762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &1385546765
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -60695,7 +60491,7 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -62215,7 +62011,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1517325045}
   - component: {fileID: 1517325047}
-  - component: {fileID: 1517325046}
   m_Layer: 0
   m_Name: Button_on
   m_TagString: Untagged
@@ -62238,18 +62033,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1855561241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1517325046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1517325044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &1517325047
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -69296,7 +69079,7 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -69763,7 +69546,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1592133062}
   - component: {fileID: 1592133064}
-  - component: {fileID: 1592133063}
   m_Layer: 0
   m_Name: Button_off
   m_TagString: Untagged
@@ -69786,18 +69568,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 423060681}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1592133063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1592133061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &1592133064
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -69866,7 +69636,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1592628359}
   - component: {fileID: 1592628361}
-  - component: {fileID: 1592628360}
   m_Layer: 0
   m_Name: Button_on
   m_TagString: Untagged
@@ -69889,18 +69658,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 376306454}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1592628360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1592628358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &1592628361
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -69969,7 +69726,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1603607100}
   - component: {fileID: 1603607102}
-  - component: {fileID: 1603607101}
   m_Layer: 0
   m_Name: Button_off
   m_TagString: Untagged
@@ -69992,18 +69748,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 182596730}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1603607101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603607099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &1603607102
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -70072,7 +69816,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1609413022}
   - component: {fileID: 1609413024}
-  - component: {fileID: 1609413023}
   m_Layer: 0
   m_Name: Button_on
   m_TagString: Untagged
@@ -70095,18 +69838,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 586625661}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1609413023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609413021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &1609413024
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -76883,7 +76614,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1703229821}
   - component: {fileID: 1703229823}
-  - component: {fileID: 1703229822}
   m_Layer: 0
   m_Name: Button_off
   m_TagString: Untagged
@@ -76906,18 +76636,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 681678970}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1703229822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1703229820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &1703229823
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -77973,7 +77691,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1790168795}
   - component: {fileID: 1790168797}
-  - component: {fileID: 1790168796}
   m_Layer: 0
   m_Name: Button_on
   m_TagString: Untagged
@@ -77996,18 +77713,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 787335260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1790168796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790168794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &1790168797
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -78506,7 +78211,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1841704776}
   - component: {fileID: 1841704778}
-  - component: {fileID: 1841704777}
   m_Layer: 0
   m_Name: Button_on
   m_TagString: Untagged
@@ -78529,18 +78233,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 182596730}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1841704777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841704775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &1841704778
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -83604,7 +83296,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1897569990}
   - component: {fileID: 1897569992}
-  - component: {fileID: 1897569991}
   m_Layer: 0
   m_Name: Button_off
   m_TagString: Untagged
@@ -83627,18 +83318,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1147025440}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1897569991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1897569989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &1897569992
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87530,7 +87209,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1984432942}
   - component: {fileID: 1984432944}
-  - component: {fileID: 1984432943}
   m_Layer: 0
   m_Name: Button_on
   m_TagString: Untagged
@@ -87553,18 +87231,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1147025440}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1984432943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1984432941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650a617f8af962f44b2bf99a2e80737c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::YSort
 --- !u!212 &1984432944
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -96592,7 +96258,7 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -97296,7 +96962,7 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
