@@ -117,6 +117,8 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        _speed = _isPushing ? 3.5f : 7f;
+
         if (_isRecording && _inputVec != _lastRecordedInput)
         {
             _records.Add(new InputRecord
@@ -157,25 +159,35 @@ public class PlayerController : MonoBehaviour
         Manager.Game.PlayerDieAndSave(_records, gameObject, _dieCount, _recordStartTime);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerStay2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Box"))
+        if (!other.CompareTag("Box")) return;
+
+        var box = other.GetComponent<BoxInteraction>();
+        if (box == null) return;
+
+        if (_isKeyPressed && box != null && box.IsPlayerOnly)
         {
             _canMoveBox = true;
-            _box = collision.gameObject;
-            _boxRb = collision.rigidbody;
-            _speed = 3.5f;
+            _box = other.gameObject;
+            _boxRb = other.attachedRigidbody;
+            box.SetMovable(true);
         }
     }
 
-    void OnCollisionExit2D(Collision2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Box"))
+        if (!other.CompareTag("Box")) return;
+
+        var box = other.GetComponent<BoxInteraction>();
+        if (box == null) return;
+
+        if (_box != null && other.gameObject == _box)
         {
             _canMoveBox = false;
             _box = null;
             _boxRb = null;
-            _speed = 7f;
+            box.SetMovable(false);
         }
     }
 
