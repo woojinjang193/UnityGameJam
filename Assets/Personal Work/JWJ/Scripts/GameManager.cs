@@ -8,7 +8,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class GameManager : Singleton<GameManager>
 {
     public int CurStage; //{ get; private set; }
-    public int Coin;
+    // public int Coin;
     private float _spawnDelayTime = 2;
 
     private GameObject _echo;
@@ -37,6 +37,20 @@ public class GameManager : Singleton<GameManager>
 
     private bool _isBox = false;
     private int _echoID = 0;
+
+    //재영 추가
+    public event Action<int> OnCoinCountChanged; 
+
+    private int _coin;
+    public int Coin 
+    {
+        get => _coin;
+        set
+        {
+            _coin = value;
+            OnCoinCountChanged?.Invoke(_coin); 
+        }
+    }
     protected override void Awake()
     {
         base.Awake();
