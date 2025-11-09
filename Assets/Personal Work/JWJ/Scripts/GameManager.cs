@@ -23,8 +23,8 @@ public class GameManager : Singleton<GameManager>
 
     private GameObject _fireHPrefab;
     private GameObject _fireVPrefab;
-    private  Vector2 _fireHPos = Vector2.zero;
-    private  Vector2 _fireVPos = Vector2.zero;
+    private Vector2 _fireHPos = Vector2.zero;
+    private Vector2 _fireVPos = Vector2.zero;
     private readonly List<BoxInteraction> _firesH = new();
     private readonly List<BoxInteraction> _firesV = new();
 
@@ -57,7 +57,7 @@ public class GameManager : Singleton<GameManager>
 
         CurStage = 0;
     }
-    
+
 
     //어드레서블에서 잔상 로드하는 함수
     private void OnEchoLoaded(AsyncOperationHandle<GameObject> handle)
@@ -152,7 +152,7 @@ public class GameManager : Singleton<GameManager>
 
         if (_isBox)
         {
-            if (CurStage == 7)
+            if (CurStage == 4)
             {
                 RepositionFires();
                 SpawnFire(false);
@@ -282,6 +282,6 @@ public class GameManager : Singleton<GameManager>
             fireV.gameObject.GetComponent<WoodStick>().ResetFire();
         }
     }
-    
+
 
 }
