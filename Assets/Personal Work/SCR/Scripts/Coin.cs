@@ -6,8 +6,10 @@ public class Coin : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
             Manager.Game.Coin++;
+            Debug.Log("코인 먹음");
+            Debug.Log($"{Manager.Game.Coin}");
+            Destroy(gameObject);
         }
     }
 }

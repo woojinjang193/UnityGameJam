@@ -10,7 +10,7 @@ public class ItemStackUI : MonoBehaviour
     [SerializeField] private Image stackImage;
 
     [Header("Stack Info")]
-    [SerializeField] private int maxCount = 5;
+    [SerializeField] private int maxCount = 4;
 
     [Header("DOTween Setting")]
     [SerializeField] private float fillDuration = 0.2f;
@@ -31,7 +31,20 @@ public class ItemStackUI : MonoBehaviour
     void Awake()
     {
         if (Manager.Game.CurStage != 6) return;
-        ItemCount = 0;
+        Debug.Log($"{Manager.Game}");
+        Manager.Game.OnCoinCountChanged += HandleCoinCountChange;
+        ItemCount = Manager.Game.Coin;
+        // StackImageUpdate();
+    }
+    void OnDestroy()
+    {
+        fillTween.Kill();
+        Manager.Game.OnCoinCountChanged -= HandleCoinCountChange;
+    }
+    private void HandleCoinCountChange(int coinCount)
+    {
+        Debug.Log("이벤트");
+        ItemCount = coinCount;
     }
 
     public void StackImageUpdate()
@@ -43,6 +56,7 @@ public class ItemStackUI : MonoBehaviour
         .SetEase(Ease.OutSine)
         .SetUpdate(true);
     }
+    //
     public void StackItemCount()
     {
         ItemCount++;
