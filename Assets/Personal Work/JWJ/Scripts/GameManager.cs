@@ -152,7 +152,7 @@ public class GameManager : Singleton<GameManager>
 
         if (_isBox)
         {
-            if (CurStage == 4)
+            if (CurStage == 4 || CurStage == 8)
             {
                 RepositionFires();
                 SpawnFire(false);
