@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Box
   - Ground
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -43,11 +44,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: shadow
-    uniqueID: 4018694493
-    locked: 0
   - name: object
     uniqueID: 314901071
+    locked: 0
+  - name: shadow
+    uniqueID: 4018694493
     locked: 0
   - name: Mirror
     uniqueID: 3806965311

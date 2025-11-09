@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
             animator.Play($"Idle{(_faceLocked ? _lockedDir : beforedic)}", 0, 0f);
         }
     }
-  
+
     public void OnInteract(InputValue value)
     {
         _isKeyPressed = value.isPressed;
@@ -202,8 +202,17 @@ public class PlayerController : MonoBehaviour
         Manager.Game.PlayerDieAndSave(_records, gameObject, _dieCount, _recordStartTime);
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Fire"))
+        {
+            _box = null;
+        }
+    }
+
     void OnTriggerStay2D(Collider2D other)
     {
+
         if (!other.CompareTag("Box")) return;
 
         var box = other.GetComponent<BoxInteraction>();
