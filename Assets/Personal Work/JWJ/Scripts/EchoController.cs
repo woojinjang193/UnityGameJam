@@ -39,12 +39,13 @@ public class EchoController : MonoBehaviour
         _rigid = GetComponent<Rigidbody2D>();
         _startColor = _sr.color;
         animator = GetComponent<Animator>();
+        Manager.Game.OnPlayerStart += OnPlayerStart;
+        Manager.Game.OnPlayerDied += OnPlayerDied;
     }
 
     private void OnEnable()
     {
-        Manager.Game.OnPlayerStart += OnPlayerStart;
-        Manager.Game.OnPlayerDied += OnPlayerDied;
+
         _startColor.a = 0.3f;
         _sr.color = _startColor;
 
@@ -55,9 +56,15 @@ public class EchoController : MonoBehaviour
 
     private void OnDisable()
     {
+
+    }
+
+    private void OnDestroy()
+    {
         Manager.Game.OnPlayerStart -= OnPlayerStart;
         Manager.Game.OnPlayerDied -= OnPlayerDied;
     }
+
     private void OnPlayerStart()
     {
         _startTime = Time.fixedTime;

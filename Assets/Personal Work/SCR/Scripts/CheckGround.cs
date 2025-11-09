@@ -125,6 +125,7 @@ public class CheckGround : MonoBehaviour
                 transform.position = respawnPos;
                 transform.localScale = new Vector3(1, 1, 1);
                 Debug.Log("에코");
+                echoController.gameObject.SetActive(false);
             }
 
         }
