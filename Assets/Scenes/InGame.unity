@@ -24022,7 +24022,7 @@ SpriteRenderer:
   m_Size: {x: 7.4, y: 10.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &618081706
@@ -41768,7 +41768,7 @@ SpriteRenderer:
   m_Size: {x: 7.4, y: 10.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &933533080
@@ -46635,7 +46635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7832002416735997846, guid: 7877619dbca19a44fb2e3690d2dd3eb5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -50501,7 +50501,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 314901071
   m_SortingLayer: 1
-  m_SortingOrder: 28
+  m_SortingOrder: 196
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -64263,7 +64263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1758239431
 Transform:
   m_ObjectHideFlags: 0
@@ -66030,7 +66030,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 314901071
   m_SortingLayer: 1
-  m_SortingOrder: -72
+  m_SortingOrder: 96
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -84161,7 +84161,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 314901071
   m_SortingLayer: 1
-  m_SortingOrder: -172
+  m_SortingOrder: -4
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
